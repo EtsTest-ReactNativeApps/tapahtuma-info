@@ -1,21 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import ReactTable from "react-table-v6";
+import { StyleSheet, Text, View, Button, TextInput, FlatList, Alert} from 'react-native';
 
-export default function App() {
+
+function App() {
+
+  const [listItems, setListItems] = React.useState([]);
+  const [text,setText] = React.useState("")
+
+  function fetchData() {
+    fetch('http://open-api.myhelsinki.fi/v1/activities/', {mode: "cors"})
+      .then(response => response.json())
+      .then(responseData => {
+        console.log(responseData)
+        setListItems(responseData.data);
+      })
+      .catch((error) => { Alert.alert('Error', error); }); 
+  }
+
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js </Text>
-      <StatusBar style="auto" />
+    <View>
+      <FlatList data={listItems} renderItem={({ item }) =>
+        <Text>{item.key}
+        </Text>}
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
