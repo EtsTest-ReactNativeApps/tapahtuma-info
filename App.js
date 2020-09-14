@@ -5,10 +5,10 @@ import { StyleSheet, Text, View, Button, TextInput, FlatList, Alert, ScrollView,
 
 
 function App() {
-
   const [listItems, setListItems] = React.useState([]);
-  const [text, setText] = React.useState("")
+  const [text, setText] = React.useState("");
 
+  const Tab = createBottomTabNavigator();
 
   /*
   
@@ -27,37 +27,44 @@ function App() {
   */
 
 
-
   function fetchData() {
-    fetch('https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/activities/', {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Origin: "x-requested-with"
+    fetch(
+      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/activities/",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Origin: "x-requested-with",
+        },
       }
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        console.log(responseData.data[0])
+    )
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData.data[0]);
         setListItems(responseData.data);
       })
-      .catch((error) => { Alert.alert('Error', error); });
+      .catch((error) => {
+        Alert.alert("Error", error);
+      });
   }
-
 
   React.useEffect(() => {
     fetchData();
   }, []);
 
-
-
-
   return (
     <ScrollView style={styles.HistoryContainer}>
-      {listItems.map(item => <Text onPress={() => Linking.openURL(item.info_url)} style={{ fontSize: 20 }} key={item.id}>{item.name.fi}</Text>)}
+      {listItems.map((item) => (
+        <Text
+          onPress={() => Linking.openURL(item.info_url)}
+          style={{ fontSize: 20 }}
+          key={item.id}
+        >
+          {item.name.fi}
+        </Text>
+      ))}
     </ScrollView>
-
   );
 }
 
@@ -66,9 +73,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: 5,
     marginTop: 50,
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  },
 });
-
 
 export default App;
