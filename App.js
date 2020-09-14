@@ -1,6 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 /* import ReactTable from "react-table-v6"; */
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -13,17 +15,6 @@ import {
   Linking,
 } from "react-native";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  FlatList,
-  Alert,
-  ScrollView,
-  Linking,
-} from "react-native";
 import Eventlist from "./components/eventlist";
 import Restaurants from "./components/Restaurants";
 

@@ -36,7 +36,7 @@ export default function Restaurants() {
 
   function fetchData() {
     fetch(
-      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/places/{id}/tags",
+      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/places/",
       {
         method: "GET",
         headers: {
