@@ -1,8 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-//import ReactTable from "react-table-v6";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+/* import ReactTable from "react-table-v6"; */
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  FlatList,
+  Alert,
+  ScrollView,
+  Linking,
+} from "react-native";
 
 import {
   StyleSheet,
