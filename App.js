@@ -10,21 +10,6 @@ function App() {
   const [text, setText] = React.useState("")
 
 
-/*
-
-  function fetchData(){
-    fetch("http://open-api.myhelsinki.fi/v1/events/", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-    .then(responseData => responseData)
-    .then(responseData => console.log(responseData))
-  }
-
-*/
 
 
   
@@ -44,6 +29,7 @@ function App() {
       })
       .catch((error) => { Alert.alert('Error', error); });
   }
+
 
 
   React.useEffect(() => {
