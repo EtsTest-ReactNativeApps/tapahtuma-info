@@ -2,5 +2,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 628
+  "packagerPid": 40336,
+  "expoServerNgrokUrl": "https://mn-v6x.anonymous.tapahtuma-info.exp.direct",
+  "packagerNgrokUrl": "https://packager.mn-v6x.anonymous.tapahtuma-info.exp.direct",
+  "ngrokPid": 40369
 }
