@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-/* import ReactTable from "react-table-v6"; */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+
 import {
   StyleSheet,
   Text,
