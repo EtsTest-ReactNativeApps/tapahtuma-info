@@ -78,7 +78,7 @@ export default function Restaurants() {
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    fontSize: 5,
+    frontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },

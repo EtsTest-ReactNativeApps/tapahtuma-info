@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {useState} from "react";
 /* import ReactTable from "react-table-v6"; */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -13,7 +13,8 @@ import {
   Alert,
   ScrollView,
   Linking,
-} from "react-native";
+} from "react-native"
+import {SearchBar} from 'react-native-elements';
 
 import Eventlist from "./components/eventlist";
 import Restaurants from "./components/Restaurants";
@@ -21,20 +22,29 @@ import Restaurants from "./components/Restaurants";
 const Tab = createBottomTabNavigator();
 
 function App() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onChangeSearch = query => setSearchQuery(query);
+
   return (
+
+   
     <NavigationContainer>
+    <SearchBar placeholder="Etsi tapahtumaa..." onChangeText={onChangeSearch} value={searchQuery}/> 
       <Tab.Navigator>
         <Tab.Screen name="Tapahtumat" component={Eventlist} />
         <Tab.Screen name="Ravintolat" component={Restaurants} />
       </Tab.Navigator>
     </NavigationContainer>
+
   );
 }
 
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    fontSize: 5,
+    frontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },
