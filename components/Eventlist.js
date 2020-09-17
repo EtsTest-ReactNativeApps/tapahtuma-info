@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-//import ReactTable from "react-table-v6";
 
 import {
   StyleSheet,
@@ -14,25 +13,13 @@ import {
   Linking,
 } from "react-native";
 
+import Search from "./Search";
+
 export default function Eventlist() {
   const [listItems, setListItems] = React.useState([]);
+  const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [text, setText] = React.useState("");
 
-  /*
-
-  function fetchData(){
-    fetch("http://open-api.myhelsinki.fi/v1/events/", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-    .then(responseData => responseData)
-    .then(responseData => console.log(responseData))
-  }
-
-*/
 
   function fetchData() {
     fetch(
@@ -48,12 +35,17 @@ export default function Eventlist() {
     )
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData.data[0]);
         setListItems(responseData.data);
+        setListItemsKeep(responseData.data)
       })
       .catch((error) => {
         Alert.alert("Error", error);
       });
+  }
+
+
+  function callBackFunction(newData){
+    setListItems(newData)
   }
 
   React.useEffect(() => {
@@ -61,17 +53,20 @@ export default function Eventlist() {
   }, []);
 
   return (
-    <ScrollView style={styles.HistoryContainer}>
-      {listItems.map((item) => (
-        <Text
-          onPress={() => Linking.openURL(item.info_url)}
-          style={{ fontSize: 20 }}
-          key={item.id}
-        >
-          {item.name.fi}
-        </Text>
-      ))}
-    </ScrollView>
+    <View style={{flex:1}}>
+      <Search lista={listItems} keepLista={listItemsKeep} parentCallback={callBackFunction}/>
+      <ScrollView style={styles.HistoryContainer}>
+        {listItems.map((item) => (
+          <Text
+            onPress={() => Linking.openURL(item.info_url)}
+            style={{ fontSize: 20 }}
+            key={item.id}
+          >
+            {item.name.fi}
+          </Text>
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
