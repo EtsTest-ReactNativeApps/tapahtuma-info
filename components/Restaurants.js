@@ -60,19 +60,27 @@ export default function Restaurants() {
     fetchData();
   }, []);
 
+  const filterData = (item) => {
+    console.log(item);
+    if (item.item.tags[2].name == "Restaurant" && item.item.tags.lenght >= 2) {
+      return item.name.fi;
+    }
+  };
+  //({if ({item.tags[2]} == "Restaurant"){
+
   return (
     <ScrollView style={styles.HistoryContainer}>
       <FlatList
         data={listItems}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Text
-            onPress={() => Linking.openURL(item.info_url)}
-            style={{ fontSize: 15 }}
-          >
-            {item.name.fi}
-          </Text>
-        )}
+        renderItem={(item) =>
+          filterData(item)(
+            <Text
+              onPress={() => Linking.openURL(item.info_url)}
+              style={{ fontSize: 15 }}
+            ></Text>
+          )
+        }
       ></FlatList>
     </ScrollView>
   );
