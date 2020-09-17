@@ -53,6 +53,7 @@ export default function Eventlist() {
   }, []);
 
   return (
+<<<<<<< HEAD
     <View style={{flex:1}}>
       <Search lista={listItems} keepLista={listItemsKeep} parentCallback={callBackFunction}/>
       <ScrollView style={styles.HistoryContainer}>
@@ -67,14 +68,39 @@ export default function Eventlist() {
         ))}
       </ScrollView>
     </View>
+=======
+    <ScrollView style={styles.HistoryContainer}>
+      <FlatList
+        data={listItems}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Text
+            onPress={() => Linking.openURL(item.info_url)}
+            style={{ fontSize: 15 }}
+          >
+            {item.name.fi}
+          </Text>
+        )}
+      ></FlatList>
+    </ScrollView>
+>>>>>>> 7fbf4be039f6593dcfc955af5412741cdd98d8a6
   );
 }
 
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    frontSize: 5,
+    fontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },
 });
+/* {listItems.map((item) => (
+  <Text
+  onPress={() => Linking.openURL(item.info_url)}
+  style={{ fontSize: 20 }}
+  key={item.id}
+>
+  {item.name.fi}
+</Text>
+))}*/

@@ -62,15 +62,18 @@ export default function Restaurants() {
 
   return (
     <ScrollView style={styles.HistoryContainer}>
-      {listItems.map((item) => (
-        <Text
-          onPress={() => Linking.openURL(item.info_url)}
-          style={{ fontSize: 20 }}
-          key={item.id}
-        >
-          {item.name.fi}
-        </Text>
-      ))}
+      <FlatList
+        data={listItems}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Text
+            onPress={() => Linking.openURL(item.info_url)}
+            style={{ fontSize: 15 }}
+          >
+            {item.name.fi}
+          </Text>
+        )}
+      ></FlatList>
     </ScrollView>
   );
 }
@@ -78,8 +81,18 @@ export default function Restaurants() {
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    frontSize: 5,
+    fontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },
 });
+
+/**{listItems.map((item) => (
+        <Text
+          onPress={() => Linking.openURL(item.info_url)}
+          style={{ fontSize: 20 }}
+          key={item.id}
+        >
+          {item.name.fi}
+        </Text>
+      ))} */

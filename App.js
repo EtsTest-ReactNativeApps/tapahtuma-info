@@ -37,7 +37,7 @@ function App() {
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    frontSize: 5,
+    fontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },
