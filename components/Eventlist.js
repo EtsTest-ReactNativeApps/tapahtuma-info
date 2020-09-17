@@ -23,7 +23,7 @@ export default function Eventlist() {
 
   function fetchData() {
     fetch(
-      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/activities/",
+      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/events/",
       {
         method: "GET",
         headers: {
@@ -37,6 +37,7 @@ export default function Eventlist() {
       .then((responseData) => {
         setListItems(responseData.data);
         setListItemsKeep(responseData.data)
+
       })
       .catch((error) => {
         Alert.alert("Error", error);

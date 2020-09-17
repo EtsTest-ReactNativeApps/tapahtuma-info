@@ -22,7 +22,7 @@ export default function Search(props) {
     const SearchFilterFunction = text => {
         setSearchQuery(text);
         //passing the inserted text in textinput
-        const newData = props.lista.filter(function (item) {
+        const newData = props.keepLista.filter(function (item) {
             //applying filter for the inserted text in search bar
             const itemData = item.name.fi ? item.name.fi.toUpperCase() : ''.toUpperCase();
             const textData = text.toUpperCase();
@@ -30,14 +30,10 @@ export default function Search(props) {
         });
         console.log(newData)
         setSearchQuery(text)
-        if (text === ""){
-            console.log("Text Tyhjä")
-            console.log(props.keepLista)
+ 
 
-            props.parentCallback(props.keepLista)
-        }else {
-            props.parentCallback(newData)
-        }
+        props.parentCallback(newData)
+        
         
     }
 
