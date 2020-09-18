@@ -23,7 +23,7 @@ export default function Eventlist() {
 
   function fetchData() {
     fetch(
-      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/events/",
+      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/activities/",
       {
         method: "GET",
         headers: {

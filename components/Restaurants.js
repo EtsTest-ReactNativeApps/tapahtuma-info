@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {Component} from "react";
 //import ReactTable from "react-table-v6";
 
 import {
@@ -16,25 +16,13 @@ import {
 
 export default function Restaurants() {
   const [listItems, setListItems] = React.useState([]);
+  const [ravintolaLista, setRavintolaLista] = React.useState([]);
   const [text, setText] = React.useState("");
 
-  /*
 
-  function fetchData(){
-    fetch("http://open-api.myhelsinki.fi/v1/events/", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-    .then(responseData => responseData)
-    .then(responseData => console.log(responseData))
-  }
+  const filterRestaurant = d => d.tags.length > 2 && d.tags[2].name === "Restaurant"
 
-*/
-
-  function fetchData() {
+  async function fetchData() {
     fetch(
       "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/places/",
       {
@@ -48,8 +36,8 @@ export default function Restaurants() {
     )
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData.data[0]);
-        setListItems(responseData.data);
+        console.log(responseData.data);
+        setListItems(responseData.data.filter(filterRestaurant));
       })
       .catch((error) => {
         Alert.alert("Error", error);
@@ -60,27 +48,17 @@ export default function Restaurants() {
     fetchData();
   }, []);
 
-  const filterData = (item) => {
-    console.log(item);
-    if (item.item.tags[2].name == "Restaurant" && item.item.tags.lenght >= 2) {
-      return item.name.fi;
-    }
-  };
-  //({if ({item.tags[2]} == "Restaurant"){
 
   return (
     <ScrollView style={styles.HistoryContainer}>
       <FlatList
         data={listItems}
         keyExtractor={(item) => item.id}
-        renderItem={(item) =>
-          filterData(item)(
-            <Text
-              onPress={() => Linking.openURL(item.info_url)}
-              style={{ fontSize: 15 }}
-            ></Text>
-          )
-        }
+        renderItem={({ item }) => (
+          <Text
+            onPress={() => Linking.openURL(item.info_url)}
+            style={{ fontSize: 15 }}
+          >{item.name.fi}</Text>)}
       ></FlatList>
     </ScrollView>
   );
