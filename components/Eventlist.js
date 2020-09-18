@@ -77,7 +77,6 @@ export default function Eventlist() {
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    fontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },

@@ -36,7 +36,6 @@ export default function Restaurants() {
     )
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData.data);
         setListItems(responseData.data.filter(filterRestaurant));
       })
       .catch((error) => {
@@ -67,7 +66,6 @@ export default function Restaurants() {
 const styles = StyleSheet.create({
   HistoryContainer: {
     marginHorizontal: 20,
-    fontSize: 5,
     marginTop: 50,
     flexDirection: "column",
   },
