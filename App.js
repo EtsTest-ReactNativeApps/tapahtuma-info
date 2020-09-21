@@ -27,7 +27,8 @@ function App() {
 
   return (
     <NavigationContainer>
-        <Tab.Navigator 
+        <Tab.Navigator
+        style={styles.HistoryContainer}
         screenOptions={({route}) => ({
           tabBarIcon: ({focused,color,size}) => {
 

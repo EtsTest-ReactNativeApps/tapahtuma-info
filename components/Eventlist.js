@@ -56,9 +56,8 @@ export default function Eventlist() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 ,marginTop:30}}>
       <Search
-        lista={listItems}
         keepLista={listItemsKeep}
         parentCallback={callBackFunction}
       />

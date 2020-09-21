@@ -31,7 +31,7 @@ export default function Event(props) {
   } else {
     image = {
       uri:
-        "https://i.media.fi/incoming/2314031.JPG/alternates/FREE_1440/2314031.JPG",
+        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
     };
   }
 
@@ -53,11 +53,7 @@ export default function Event(props) {
         <Text>{newDate}</Text>
         <Text>{props.item.location.address.street_address}</Text>
       </View>
-      <View style={{alingItems:"flex-end",flexDirection:"column"}}>
-        <Text>Katso lähimmät:</Text>
-        <Button style={{ width: 150 }} title="Ravintolat"></Button>
-        <Button style={{ width: 150 }} title="Kahvilat"></Button>
-      </View>
+
     </View>
   );
 }
@@ -67,7 +63,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
     flexDirection: "row",
-    marginLeft: 10,
     borderWidth: 1,
     padding: 5,
   },
