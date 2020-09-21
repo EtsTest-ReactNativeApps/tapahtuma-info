@@ -41,26 +41,34 @@ export default function Event(props) {
 
   return (
     <View style={styles.EventContainer}>
-      <Image style={{ width: 50, height: 50 }} source={image} />
-      <Text
-        onPress={() => Linking.openURL(props.item.info_url)}
-        style={{ fontWeight: "bold" }}
-      >
-        {props.item.name.fi}
-      </Text>
-      <Text>{newDate}</Text>
-      <Text>{props.item.location.address.street_address}</Text>
-      <Text>Katso lähimmät:</Text>
-      <Button style={{ width: 150 }} title="Ravintolat"></Button>
-      <Button style={{ width: 150 }} title="Kahvilat"></Button>
+      <View style={{ marginRight: 10 }}>
+        <Image style={{ width: 55, height: 55 }} source={image} />
+      </View>
+      <View>
+        <Text
+          onPress={() => Linking.openURL(props.item.info_url)}
+          style={{ fontWeight: "bold" }}>
+          {props.item.name.fi}
+        </Text>
+        <Text>{newDate}</Text>
+        <Text>{props.item.location.address.street_address}</Text>
+      </View>
+      <View style={{alingItems:"flex-end",flexDirection:"column"}}>
+        <Text>Katso lähimmät:</Text>
+        <Button style={{ width: 150 }} title="Ravintolat"></Button>
+        <Button style={{ width: 150 }} title="Kahvilat"></Button>
+      </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
   EventContainer: {
+    flex:1,
     marginHorizontal: 20,
-    marginTop: 0,
-    flexDirection: "column",
+    marginVertical: 10,
+    flexDirection: "row",
     marginLeft: 10,
+    borderWidth: 1,
+    padding: 5,
   },
 });

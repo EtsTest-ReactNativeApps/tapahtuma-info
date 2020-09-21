@@ -23,7 +23,7 @@ export default function Eventlist() {
 
   function fetchData() {
     fetch(
-      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/events/?limit=100",
+      "https://infinite-waters-68003.herokuapp.com/open-api.myhelsinki.fi/v1/events/?limit=100",
       {
         method: "GET",
         headers: {
