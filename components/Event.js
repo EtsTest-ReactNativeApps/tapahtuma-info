@@ -36,11 +36,11 @@ export default function Event(props) {
   }
 
   var newDate = moment(props.item.event_dates.starting_day).format(
-    "DD.MM.YYYY, H:MM"
+    "DD.MM.YYYY, H:mm"
   );
 
-  let title;
-  if (props.item.name.fi !== null){
+  let title;                            // Tarkastetaan onko suomenkielistä name atribuuttia saatavilla
+  if (props.item.name.fi !== null){     // jos ei ole käytetään englanninkieleistä
     title = props.item.name.fi
   }else if(props.item.name.en !== null){
     title = props.item.name.en

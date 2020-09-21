@@ -39,9 +39,16 @@ export default function Eventlist() {
         const sortedEvents = responseData.data.sort(function (a, b) {
           return (a.event_dates.starting_day < b.event_dates.starting_day) ? -1 : ((a.event_dates.starting_day > b.event_dates.starting_day) ? 1 : 0);
         });
-        console.log(sortedEvents)
-        setListItems(sortedEvents);
-        setListItemsKeep(sortedEvents);
+
+        let today = new Date().toISOString();
+
+        const filterDates = sortedEvents.filter(function(a){
+          return a.event_dates.starting_day >= today;
+        })
+
+        console.log(filterDates)
+        setListItems(filterDates);
+        setListItemsKeep(filterDates);
       })
       .catch((error) => {
         Alert.alert("Error", error);
@@ -69,7 +76,6 @@ export default function Eventlist() {
       <FlatList
         style={{ marginLeft: 10 }}
         data={listItems}
-        initialNumToRender={10}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => renderItem(item)}
       ></FlatList>
