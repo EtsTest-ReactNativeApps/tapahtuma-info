@@ -13,6 +13,7 @@ import {
   Linking,
   Image,
 } from "react-native";
+import moment from "moment";
 
 export default function Event(props) {
   // const [picture, setPicture] = React.useState();
@@ -34,10 +35,14 @@ export default function Event(props) {
     };
   }
 
+  var newDate = moment(props.item.event_dates.starting_day).format(
+    "DD.MM.YYYY, H:MM"
+  );
   return (
     <View style={styles.EventContainer}>
       <Image style={{ width: 50, height: 50 }} source={image} />
-      <Text>{props.item.name.fi}</Text>
+      <Text style={{ fontWeight: "bold" }}>{props.item.name.fi}</Text>
+      <Text>{newDate}</Text>
       <Text>{props.item.location.address.street_address}</Text>
     </View>
   );
