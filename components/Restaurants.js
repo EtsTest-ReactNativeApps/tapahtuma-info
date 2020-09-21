@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, {Component} from "react";
+import React, { Component } from "react";
 //import ReactTable from "react-table-v6";
 
 import {
@@ -19,8 +19,8 @@ export default function Restaurants() {
   const [ravintolaLista, setRavintolaLista] = React.useState([]);
   const [text, setText] = React.useState("");
 
-
-  const filterRestaurant = d => d.tags.length > 2 && d.tags[2].name === "Restaurant"
+  const filterRestaurant = (d) =>
+    d.tags.length > 2 && d.tags[2].name === "Restaurant";
 
   async function fetchData() {
     fetch(
@@ -47,19 +47,25 @@ export default function Restaurants() {
     fetchData();
   }, []);
 
+  const renderItem = (item) => {
+    return (
+      <Text
+        onPress={() => Linking.openURL(item.info_url)}
+        style={{ fontSize: 15 }}
+      >
+        {item.name.fi}
+      </Text>
+    );
+  };
 
   return (
-    <ScrollView style={styles.HistoryContainer}>
+    <View style={styles.HistoryContainer}>
       <FlatList
         data={listItems}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Text
-            onPress={() => Linking.openURL(item.info_url)}
-            style={{ fontSize: 15 }}
-          >{item.name.fi}</Text>)}
+        renderItem={({ item }) => renderItem(item)}
       ></FlatList>
-    </ScrollView>
+    </View>
   );
 }
 
