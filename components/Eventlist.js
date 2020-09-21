@@ -23,7 +23,7 @@ export default function Eventlist() {
 
   function fetchData() {
     fetch(
-      "https://infinite-waters-68003.herokuapp.com/open-api.myhelsinki.fi/v1/events/?limit=100",
+      "https://infinite-waters-68003.herokuapp.com/open-api.myhelsinki.fi/v1/events/",
       {
         method: "GET",
         headers: {
@@ -35,8 +35,13 @@ export default function Eventlist() {
     )
       .then((response) => response.json())
       .then((responseData) => {
-        setListItems(responseData.data);
-        setListItemsKeep(responseData.data);
+
+        const sortedEvents = responseData.data.sort(function (a, b) {
+          return (a.event_dates.starting_day < b.event_dates.starting_day) ? -1 : ((a.event_dates.starting_day > b.event_dates.starting_day) ? 1 : 0);
+        });
+        console.log(sortedEvents)
+        setListItems(sortedEvents);
+        setListItemsKeep(sortedEvents);
       })
       .catch((error) => {
         Alert.alert("Error", error);
@@ -56,7 +61,7 @@ export default function Eventlist() {
   };
 
   return (
-    <View style={{ flex: 1 ,marginTop:30}}>
+    <View style={{ flex: 1, marginTop: 30 }}>
       <Search
         keepLista={listItemsKeep}
         parentCallback={callBackFunction}
@@ -64,6 +69,7 @@ export default function Eventlist() {
       <FlatList
         style={{ marginLeft: 10 }}
         data={listItems}
+        initialNumToRender={10}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => renderItem(item)}
       ></FlatList>
