@@ -24,10 +24,10 @@ export default function Event(props) {
 
   let image;
 
-  if (props.item.description.images.lenght > 0) {
+  if (props.item.description.images[0]) {
+    console.log(props.item.description.images[0]);
     image = { uri: props.item.description.images[0].url };
   } else {
-    console.log(props.item.description.images.lenght);
     image = {
       uri:
         "https://i.media.fi/incoming/2314031.JPG/alternates/FREE_1440/2314031.JPG",
