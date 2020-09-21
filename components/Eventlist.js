@@ -54,27 +54,24 @@ export default function Eventlist() {
   }, []);
 
 
-
-
   const renderItem = item => {
-      return (
-        <Text
-          onPress={() => Linking.openURL(item.info_url)}
-          style={{ fontSize: 15 }}>
-          {item.name.fi}
-        </Text>
-      )
+    return (
+      <Text
+        onPress={() => Linking.openURL(item.info_url)}
+        style={{ fontSize: 15 }}>
+        {item.name.fi}
+      </Text>
+    )
   }
 
-
-
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, marginTop: 30}}>
       <Search lista={listItems} keepLista={listItemsKeep} parentCallback={callBackFunction} />
       <FlatList
+        style={{marginLeft:10}}
         data={listItems}
         keyExtractor={(item) => item.id}
-        renderItem={({item}) => renderItem(item)}
+        renderItem={({ item }) => renderItem(item)}
       ></FlatList>
 
     </View>
