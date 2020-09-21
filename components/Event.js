@@ -52,7 +52,7 @@ export default function Event(props) {
       <Text>{props.item.location.address.street_address}</Text>
       <Text>Katso lähimmät:</Text>
       <Button style={{ width: 150 }} title="Ravintolat"></Button>
-      <Button title="Kahvilat"></Button>
+      <Button style={{ width: 150 }} title="Kahvilat"></Button>
     </View>
   );
 }
