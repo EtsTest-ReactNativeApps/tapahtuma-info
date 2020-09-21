@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import Event from "./Event";
 
 import {
   StyleSheet,
@@ -20,7 +21,6 @@ export default function Eventlist() {
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [text, setText] = React.useState("");
 
-
   function fetchData() {
     fetch(
       "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/activities/",
@@ -36,23 +36,22 @@ export default function Eventlist() {
       .then((response) => response.json())
       .then((responseData) => {
         setListItems(responseData.data);
-        setListItemsKeep(responseData.data)
-
+        setListItemsKeep(responseData.data);
       })
       .catch((error) => {
         Alert.alert("Error", error);
       });
   }
 
-
   function callBackFunction(newData) {
-    setListItems(newData)
+    setListItems(newData);
   }
 
   React.useEffect(() => {
     fetchData();
   }, []);
 
+<<<<<<< HEAD
 
   const renderItem = item => {
     return (
@@ -67,13 +66,25 @@ export default function Eventlist() {
   return (
     <View style={{ flex: 1, marginTop: 30}}>
       <Search lista={listItems} keepLista={listItemsKeep} parentCallback={callBackFunction} />
+=======
+  const renderItem = (item) => {
+    return <Event item={item} />;
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Search
+        lista={listItems}
+        keepLista={listItemsKeep}
+        parentCallback={callBackFunction}
+      />
+>>>>>>> 98172a219aef2e47b4fdf6d4450156cc28de243f
       <FlatList
         style={{marginLeft:10}}
         data={listItems}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => renderItem(item)}
       ></FlatList>
-
     </View>
   );
 }
@@ -83,6 +94,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 50,
     flexDirection: "column",
+    marginLeft: 10,
   },
 });
 /* {listItems.map((item) => (
