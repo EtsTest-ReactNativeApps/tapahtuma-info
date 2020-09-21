@@ -53,23 +53,30 @@ export default function Eventlist() {
     fetchData();
   }, []);
 
+
+
+
+  const renderItem = item => {
+      return (
+        <Text
+          onPress={() => Linking.openURL(item.info_url)}
+          style={{ fontSize: 15 }}>
+          {item.name.fi}
+        </Text>
+      )
+  }
+
+
+
   return (
     <View style={{ flex: 1 }}>
       <Search lista={listItems} keepLista={listItemsKeep} parentCallback={callBackFunction} />
-      <ScrollView style={styles.HistoryContainer}>
-        <FlatList
-          data={listItems}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <Text
-              onPress={() => Linking.openURL(item.info_url)}
-              style={{ fontSize: 15 }}
-            >
-              {item.name.fi}
-            </Text>
-          )}
-        ></FlatList>
-      </ScrollView>
+      <FlatList
+        data={listItems}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => renderItem(item)}
+      ></FlatList>
+
     </View>
   );
 }
