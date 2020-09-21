@@ -39,6 +39,13 @@ export default function Event(props) {
     "DD.MM.YYYY, H:MM"
   );
 
+  let title;
+  if (props.item.name.fi !== null){
+    title = props.item.name.fi
+  }else if(props.item.name.en !== null){
+    title = props.item.name.en
+  }
+
   return (
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10 }}>
@@ -48,7 +55,7 @@ export default function Event(props) {
         <Text
           onPress={() => Linking.openURL(props.item.info_url)}
           style={{ fontWeight: "bold" }}>
-          {props.item.name.fi}
+          {title}
         </Text>
         <Text>{newDate}</Text>
         <Text>{props.item.location.address.street_address}</Text>
