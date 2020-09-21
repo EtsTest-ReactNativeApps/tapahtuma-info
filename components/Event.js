@@ -26,7 +26,7 @@ export default function Event(props) {
   let image;
 
   if (props.item.description.images[0]) {
-    console.log(props.item.description.images[0]);
+    // console.log(props.item.description.images[0]);
     image = { uri: props.item.description.images[0].url };
   } else {
     image = {
@@ -38,12 +38,21 @@ export default function Event(props) {
   var newDate = moment(props.item.event_dates.starting_day).format(
     "DD.MM.YYYY, H:MM"
   );
+
   return (
     <View style={styles.EventContainer}>
       <Image style={{ width: 50, height: 50 }} source={image} />
-      <Text style={{ fontWeight: "bold" }}>{props.item.name.fi}</Text>
+      <Text
+        onPress={() => Linking.openURL(props.item.info_url)}
+        style={{ fontWeight: "bold" }}
+      >
+        {props.item.name.fi}
+      </Text>
       <Text>{newDate}</Text>
       <Text>{props.item.location.address.street_address}</Text>
+      <Text>Katso lähimmät:</Text>
+      <Button style={{ width: 150 }} title="Ravintolat"></Button>
+      <Button title="Kahvilat"></Button>
     </View>
   );
 }
