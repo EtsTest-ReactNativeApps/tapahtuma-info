@@ -12,6 +12,7 @@ import {
   Alert,
   ScrollView,
   Linking,
+  ActivityIndicator,
 } from "react-native";
 
 import Search from "./Search";
@@ -19,7 +20,7 @@ import Search from "./Search";
 export default function Eventlist() {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
-  const [text, setText] = React.useState("");
+  const [isReady, setReady] = React.useState(false);
 
   function fetchData() {
     fetch(
@@ -42,13 +43,13 @@ export default function Eventlist() {
 
         let today = new Date().toISOString();
 
-        const filterDates = sortedEvents.filter(function(a){
+        const filterDates = sortedEvents.filter(function (a) {
           return a.event_dates.starting_day >= today;
         })
 
-        console.log(filterDates)
         setListItems(filterDates);
         setListItemsKeep(filterDates);
+        setReady(true);
       })
       .catch((error) => {
         Alert.alert("Error", error);
@@ -67,8 +68,21 @@ export default function Eventlist() {
     return <Event item={item} />;
   };
 
+  if (!isReady) {
+    return (
+      <View style={{ flex: 1, marginTop: 30 }}>
+        <Search
+          keepLista={listItemsKeep}
+          parentCallback={callBackFunction}
+        />
+        <ActivityIndicator style={styles.ActivityIndicator} size="large" />
+      </View>
+    )
+  }
+
+
   return (
-    <View style={{ flex: 1, marginTop: 30 }}>
+    <View style={styles.EventListContainer}>
       <Search
         keepLista={listItemsKeep}
         parentCallback={callBackFunction}
@@ -84,11 +98,12 @@ export default function Eventlist() {
 }
 
 const styles = StyleSheet.create({
-  HistoryContainer: {
-    marginHorizontal: 20,
-    marginTop: 50,
-    flexDirection: "column",
-    marginLeft: 10,
+  EventListContainer: {
+    flex: 1,
+    marginTop: 30
+  },
+  ActivityIndicator: {
+    flex: 1,
   },
 });
 /* {listItems.map((item) => (

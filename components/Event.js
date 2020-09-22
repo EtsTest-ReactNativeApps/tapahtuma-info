@@ -40,16 +40,16 @@ export default function Event(props) {
   );
 
   let title;                            // Tarkastetaan onko suomenkielistä name atribuuttia saatavilla
-  if (props.item.name.fi !== null){     // jos ei ole käytetään englanninkieleistä
+  if (props.item.name.fi !== null) {     // jos ei ole käytetään englanninkieleistä
     title = props.item.name.fi
-  }else if(props.item.name.en !== null){
+  } else if (props.item.name.en !== null) {
     title = props.item.name.en
   }
 
   return (
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10 }}>
-        <Image style={{ width: 55, height: 55 }} source={image} />
+        <Image progressiveRenderingEnabled={true} style={{ width: 55, height: 55 }} source={image} />
       </View>
       <View>
         <Text
@@ -66,7 +66,7 @@ export default function Event(props) {
 }
 const styles = StyleSheet.create({
   EventContainer: {
-    flex:1,
+    flex: 1,
     marginHorizontal: 20,
     marginVertical: 10,
     flexDirection: "row",
