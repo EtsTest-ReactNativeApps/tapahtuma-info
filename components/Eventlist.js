@@ -70,7 +70,7 @@ export default function Eventlist() {
 
   if (!isReady) {
     return (
-      <View style={{ flex: 1, marginTop: 30 }}>
+      <View style={styles.EventListContainer}>
         <Search
           keepLista={listItemsKeep}
           parentCallback={callBackFunction}
@@ -106,12 +106,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-/* {listItems.map((item) => (
-  <Text
-  onPress={() => Linking.openURL(item.info_url)}
-  style={{ fontSize: 20 }}
-  key={item.id}
->
-  {item.name.fi}
-</Text>
-))}*/

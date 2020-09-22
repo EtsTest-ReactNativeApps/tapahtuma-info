@@ -44,7 +44,7 @@ export default function Search(props) {
 
     return (
         <View>
-            <SearchBar placeholder="Etsi tapahtumaa..." onClear={_ => this.SearchFilterFunction('')} onChangeText={text => SearchFilterFunction(text)} value={searchQuery} />
+            <SearchBar placeholder="Etsi tapahtumaa..." onClear={text => SearchFilterFunction('')} onChangeText={text => SearchFilterFunction(text)} value={searchQuery} />
         </View>
     )
 
