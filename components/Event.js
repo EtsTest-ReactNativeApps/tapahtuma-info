@@ -12,8 +12,10 @@ import {
   ScrollView,
   Linking,
   Image,
+  ToastAndroid
 } from "react-native";
 import moment from "moment";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 export default function Event(props) {
   // const [picture, setPicture] = React.useState();
@@ -46,14 +48,27 @@ export default function Event(props) {
     title = props.item.name.en
   }
 
+
+  const isLinkAvailable = () => {
+    if (props.item.info_url !== null){
+      Linking.openURL(props.item.info_url)
+    }else {
+      ToastAndroid.showWithGravity("Linkkiä ei valitettavasti ole saatavilla", ToastAndroid.SHORT,ToastAndroid.CENTER);
+    }
+  }
+
+
+
   return (
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10 }}>
-        <Image progressiveRenderingEnabled={true} style={{ width: 55, height: 55 }} source={image} />
+        <TouchableHighlight onPress={() => isLinkAvailable()}>
+          <Image progressiveRenderingEnabled={true} style={{ width: 55, height: 55 }} source={image} />
+        </TouchableHighlight>
       </View>
       <View>
         <Text
-          onPress={() => Linking.openURL(props.item.info_url)}
+          onPress={() => isLinkAvailable()}
           style={{ fontWeight: "bold" }}>
           {title}
         </Text>
