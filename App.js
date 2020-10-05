@@ -20,6 +20,7 @@ import {
 import Eventlist from "./components/Eventlist";
 import Restaurants from "./components/Restaurants";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Homepage from "./components/Homepage";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +44,7 @@ function App() {
             return <Ionicons name={iconName} size={size} color={color}/>
           }
         })}>
+          <Tab.Screen name="Etusivu" component={Homepage} />
           <Tab.Screen name="Tapahtumat" component={Eventlist} />
           <Tab.Screen name="Ravintolat" component={Restaurants} />
         </Tab.Navigator>
