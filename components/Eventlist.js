@@ -25,7 +25,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const EventlistStack = createStackNavigator();
 
-export default function Eventlist({ navigation }) {
+export default function Eventlist(props) {
+
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
@@ -43,8 +44,8 @@ export default function Eventlist({ navigation }) {
           return a.event_dates.starting_day < b.event_dates.starting_day
             ? -1
             : a.event_dates.starting_day > b.event_dates.starting_day
-            ? 1
-            : 0;
+              ? 1
+              : 0;
         });
 
         let today = new Date().toISOString();

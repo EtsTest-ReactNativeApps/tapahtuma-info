@@ -16,8 +16,9 @@ import {
 } from "react-native";
 import moment from "moment";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { useNavigation } from '@react-navigation/native';
 
-export default function Event(props, { navigation }) {
+export default function Event(props) {
   // const [picture, setPicture] = React.useState();
   // const [title, setTitle] = React.useState();
   // const [eDate, setEDate] = React.useState();
@@ -26,6 +27,8 @@ export default function Event(props, { navigation }) {
   //<Date>{props.item.event_dates.starting_day}</Date>
 
   let image;
+
+  const navigation = useNavigation();
 
   if (props.item.description.images[0]) {
     // console.log(props.item.description.images[0]);
@@ -73,7 +76,7 @@ export default function Event(props, { navigation }) {
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10, alignItem: "center" }}>
         <TouchableHighlight
-          onPress={() => navigation.navigate({ EventScreenStack })}
+          onPress={() => navigation.navigate("EventScreen")}
         >
           <Image
             progressiveRenderingEnabled={true}

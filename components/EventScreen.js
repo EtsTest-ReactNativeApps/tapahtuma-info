@@ -16,7 +16,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-export default function EventPage({ navigation }) {
+export default function EventPage() {
   //image
   //title
   //pvm,klo
@@ -28,8 +28,7 @@ export default function EventPage({ navigation }) {
 
   return (
     <View style={styles.EventListContainer}>
-      <Event />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+     <Text style={{fontSize:40}}>Event page</Text>
     </View>
   );
 }
