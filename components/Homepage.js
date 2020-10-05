@@ -17,7 +17,7 @@ import {
 export default function Homepage() {
     
   return (
-    <View style={styles.EventContainer}>
+    <View>
    
 
     </View>

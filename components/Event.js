@@ -61,7 +61,7 @@ export default function Event(props) {
 
   return (
     <View style={styles.EventContainer}>
-      <View style={{ marginRight: 10 }}>
+      <View style={{ marginRight: 10 , alignItem:"center"}}>
         <TouchableHighlight onPress={() => isLinkAvailable()}>
           <Image progressiveRenderingEnabled={true} style={{ width: 55, height: 55 }} source={image} />
         </TouchableHighlight>
@@ -69,7 +69,7 @@ export default function Event(props) {
       <View>
         <Text
           onPress={() => isLinkAvailable()}
-          style={{ fontWeight: "bold" }}>
+          style={{ fontWeight: "bold" , maxWidth:250}}>
           {title}
         </Text>
         <Text>{newDate}</Text>
