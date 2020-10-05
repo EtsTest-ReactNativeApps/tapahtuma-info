@@ -1394,6 +1394,11 @@
     invariant "^2.2.4"
     lodash "^4.5.0"
 
+"@wojtekmaj/date-utils@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@wojtekmaj/date-utils/-/date-utils-1.0.3.tgz#2dcfd92881425c5923e429c2aec86fb3609032a1"
+  integrity sha512-1VPkkTBk07gMR1fjpBtse4G+oJqpmE+0gUFB0dg3VIL7qJmUVaBoD/vlzMm/jNeOPfvlmerl1lpnsZyBUFIRuw==
+
 abort-controller@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
@@ -2968,6 +2973,13 @@ get-stream@^4.0.0:
   dependencies:
     pump "^3.0.0"
 
+get-user-locale@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/get-user-locale/-/get-user-locale-1.4.0.tgz#a2c4b5da46feec9f03c9b07d197b1620490a5370"
+  integrity sha512-gQo03lP1OArHLKlnoglqrGGl7b04u2EP9Xutmp72cMdtrrSD7ZgIsCsUKZynYWLDkVJW33Cj3pliP7uP0UonHQ==
+  dependencies:
+    lodash.once "^4.1.1"
+
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
@@ -3723,6 +3735,11 @@ lodash.isequal@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
+lodash.once@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
+  integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
+
 lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
@@ -3797,6 +3814,11 @@ md5-file@^3.2.3:
   integrity sha512-3Tkp1piAHaworfcCgH0jKbTvj1jWWFgbvh2cXaNCgHwyTCBxxvD1Y04rmfpvdPm1P4oXMOpm6+2H7sr7v9v8Fw==
   dependencies:
     buffer-alloc "^1.1.0"
+
+merge-class-names@^1.1.1:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/merge-class-names/-/merge-class-names-1.3.0.tgz#c4cdc1a981a81dd9afc27aa4287e912a337c5dee"
+  integrity sha512-k0Qaj36VBpKgdc8c188LEZvo6v/zzry/FUufwopWbMSp6/knfVFU/KIB55/hJjeIpg18IH2WskXJCRnM/1BrdQ==
 
 merge-stream@^1.0.1:
   version "1.0.1"
@@ -4209,7 +4231,7 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.29.0:
+moment@^2.22.0, moment@^2.29.0:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.0.tgz#fcbef955844d91deb55438613ddcec56e86a3425"
   integrity sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
@@ -4709,6 +4731,16 @@ range-parser@~1.2.1:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
 
+react-calendar@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-3.1.0.tgz#7a384a70f98e02177d176c45f6918fb6a15ce41f"
+  integrity sha512-xoKdRe6FrnZ30LD9pyr20fhet1uwSbc6srLGm1ib7G4b7tAXniZrwzrJ4YV/Hbmmwf/zAFGyXtBzLAIV1KNvuA==
+  dependencies:
+    "@wojtekmaj/date-utils" "^1.0.2"
+    get-user-locale "^1.2.0"
+    merge-class-names "^1.1.1"
+    prop-types "^15.6.0"
+
 react-devtools-core@^4.0.6:
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.8.2.tgz#4465f2e8de7795564aa20f28b2f3a9737586db23"
@@ -4731,6 +4763,13 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-native-datepicker@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/react-native-datepicker/-/react-native-datepicker-1.7.2.tgz#58d0822591a0ac9b32aba082650222a0ee29669d"
+  integrity sha1-WNCCJZGgrJsyq6CCZQIioO4pZp0=
+  dependencies:
+    moment "^2.22.0"
 
 react-native-elements@^2.3.2:
   version "2.3.2"
