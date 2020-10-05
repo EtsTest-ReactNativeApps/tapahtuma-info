@@ -39,6 +39,8 @@ function App() {
               iconName = "md-list";
             }else if (route.name === "Ravintolat"){
               iconName = "md-restaurant";
+            } else {
+              iconName = "md-home";
             }
 
             return <Ionicons name={iconName} size={size} color={color}/>
