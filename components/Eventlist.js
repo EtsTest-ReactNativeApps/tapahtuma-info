@@ -32,14 +32,9 @@ export default function Eventlist({ navigation }) {
 
   function fetchData() {
     fetch(
-      "https://infinite-waters-68003.herokuapp.com/open-api.myhelsinki.fi/v1/events/",
+      "http://open-api.myhelsinki.fi/v1/events/",
       {
         method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Origin: "x-requested-with",
-        },
       }
     )
       .then((response) => response.json())

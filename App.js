@@ -20,8 +20,11 @@ import {
 import Eventlist from "./components/Eventlist";
 import Restaurants from "./components/Restaurants";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import EventScreen from "./components/EventScreen";
 import Event from "./components/Event";
+
+import Homepage from "./components/Homepage";
 
 const Tab = createBottomTabNavigator();
 const EventScrStack = createStackNavigator();
@@ -69,12 +72,15 @@ function App() {
               iconName = "md-list";
             } else if (route.name === "Ravintolat") {
               iconName = "md-restaurant";
+            } else {
+              iconName = "md-home";
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
       >
+        <Tab.Screen name="Etusivu" component={Homepage} />
         <Tab.Screen name="Tapahtumat" component={EventlistStackScreen} />
         <Tab.Screen name="Ravintolat" component={Restaurants} />
       </Tab.Navigator>
