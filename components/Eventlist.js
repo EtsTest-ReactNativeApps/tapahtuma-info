@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
+import EventScreen from "./EventScreen";
 
 import {
   StyleSheet,
@@ -16,8 +17,15 @@ import {
 } from "react-native";
 
 import Search from "./Search";
+import { useLinkProps } from "@react-navigation/native";
 
-export default function Eventlist() {
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+const EventlistStack = createStackNavigator();
+
+export default function Eventlist({ navigation }) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
@@ -36,16 +44,19 @@ export default function Eventlist() {
     )
       .then((response) => response.json())
       .then((responseData) => {
-
         const sortedEvents = responseData.data.sort(function (a, b) {
-          return (a.event_dates.starting_day < b.event_dates.starting_day) ? -1 : ((a.event_dates.starting_day > b.event_dates.starting_day) ? 1 : 0);
+          return a.event_dates.starting_day < b.event_dates.starting_day
+            ? -1
+            : a.event_dates.starting_day > b.event_dates.starting_day
+            ? 1
+            : 0;
         });
 
         let today = new Date().toISOString();
 
         const filterDates = sortedEvents.filter(function (a) {
           return a.event_dates.starting_day >= today;
-        })
+        });
 
         setListItems(filterDates);
         setListItemsKeep(filterDates);
@@ -71,22 +82,15 @@ export default function Eventlist() {
   if (!isReady) {
     return (
       <View style={styles.EventListContainer}>
-        <Search
-          keepLista={listItemsKeep}
-          parentCallback={callBackFunction}
-        />
+        <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
         <ActivityIndicator style={styles.ActivityIndicator} size="large" />
       </View>
-    )
+    );
   }
-
 
   return (
     <View style={styles.EventListContainer}>
-      <Search
-        keepLista={listItemsKeep}
-        parentCallback={callBackFunction}
-      />
+      <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
       <FlatList
         style={{ marginLeft: 10 }}
         data={listItems}
@@ -100,7 +104,7 @@ export default function Eventlist() {
 const styles = StyleSheet.create({
   EventListContainer: {
     flex: 1,
-    marginTop: 30
+    marginTop: 30,
   },
   ActivityIndicator: {
     flex: 1,
