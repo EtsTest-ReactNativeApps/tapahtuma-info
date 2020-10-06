@@ -2,15 +2,7 @@ import { SearchBar } from 'react-native-elements';
 import React from "react";
 import { useState } from "react";
 import {
-    StyleSheet,
-    Text,
-    View,
-    Button,
-    TextInput,
-    FlatList,
-    Alert,
-    ScrollView,
-    Linking,
+    View
 } from "react-native";
 
 export default function Search(props) {

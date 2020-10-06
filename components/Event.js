@@ -17,6 +17,7 @@ import {
 import moment from "moment";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Event(props) {
   // const [picture, setPicture] = React.useState();
@@ -28,8 +29,11 @@ export default function Event(props) {
 
   let propsItem = props
 
+  
+
   const navigation = useNavigation();
 
+  let image;
   if (props.item.description.images[0]) {
     // console.log(props.item.description.images[0]);
     image = { uri: props.item.description.images[0].url };
@@ -52,17 +56,7 @@ export default function Event(props) {
     title = props.item.name.en;
   }
 
-  const isLinkAvailable = () => {
-    if (props.item.info_url !== null) {
-      Linking.openURL(props.item.info_url);
-    } else {
-      ToastAndroid.showWithGravity(
-        "Linkkiä ei valitettavasti ole saatavilla",
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER
-      );
-    }
-  };
+  
 
   //NAVIGOINTI YRITYS KUVASTA EVENTSCREENIIN =>
   //ERROR UNDEFINED IN NOT AN OBJECT(EVALUATING 'NAGATION.NAVIGATE')
@@ -87,13 +81,14 @@ export default function Event(props) {
       </View>
       <View>
         <Text
-          onPress={() => isLinkAvailable()}
+          onPress={() => navigation.navigate("EventScreen",{propsItem})}
           style={{ fontWeight: "bold", maxWidth: 250 }}
         >
           {title}
         </Text>
         <Text>{newDate}</Text>
         <Text>{props.item.location.address.street_address}</Text>
+        
       </View>
     </View>
   );

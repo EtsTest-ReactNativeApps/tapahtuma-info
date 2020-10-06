@@ -9,10 +9,9 @@ const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
     return (
-        <Stack.Navigator >
+        <Stack.Navigator headerMode={"float"}>
             <Stack.Screen name="Homepage" component={Homepage} />
-            <Stack.Screen headerMode={"none"} name="EventScreen" component={EventScreen} />
-            <Stack.Screen name="EventScreen" component={EventScreen} />
+            <Stack.Screen  name="EventScreen" component={EventScreen} />
             <Stack.Screen name="Eventlist" component={Eventlist} />
         </Stack.Navigator>
     );
