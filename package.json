@@ -32,7 +32,9 @@
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
     "react-native-web": "~0.13.7",
-    "react-table-v6": "^6.8.6"
+    "react-native-webview": "^10.9.2",
+    "react-table-v6": "^6.8.6",
+    "update-check": "^1.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

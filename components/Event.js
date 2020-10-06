@@ -5,19 +5,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  TextInput,
-  FlatList,
-  Alert,
-  ScrollView,
-  Linking,
   Image,
-  ToastAndroid,
 } from "react-native";
 import moment from "moment";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from "@expo/vector-icons";
+
+
 
 export default function Event(props) {
   // const [picture, setPicture] = React.useState();
@@ -27,7 +21,7 @@ export default function Event(props) {
   //<Image>{}</Image>
   //<Date>{props.item.event_dates.starting_day}</Date>
 
-  let propsItem = props
+  let propsItem = props;
 
   
 
@@ -57,20 +51,11 @@ export default function Event(props) {
   }
 
   
-
-  //NAVIGOINTI YRITYS KUVASTA EVENTSCREENIIN =>
-  //ERROR UNDEFINED IN NOT AN OBJECT(EVALUATING 'NAGATION.NAVIGATE')
-  /** YRITETTIIN EVENTLISTIN PUOLELLA MYÖS KUTAKUINKIN NÄIN MITÄ ALLA  
-   *  renderItem={({item}) => 
-        <TouchableOpacity onPress={() => this.navigation.navigate('TapahtumaInfo')}> 
-            <Text>{renderItem(item)}</Text>
-       </TouchableOpacity>
-         } > */
   return (
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10, alignItem: "center" }}>
         <TouchableHighlight
-          onPress={() => navigation.navigate("EventScreen",{propsItem})}
+          onPress={() => navigation.navigate("EventScreen", { propsItem })}
         >
           <Image
             progressiveRenderingEnabled={true}

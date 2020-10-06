@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
-import DatePicker from 'react-native-datepicker';
+import DatePicker from "react-native-datepicker";
 import Search from "./Search";
 import moment from "moment";
-import { NavigationContainer} from '@react-navigation/native';
-import { createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import {
   StyleSheet,
@@ -20,32 +20,31 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-
-export default function Homepage({route, navigation}) {
+export default function Homepage({ route, navigation }) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
-  const [date, setDate] = React.useState('');
+  const [date, setDate] = React.useState("");
 
   function fetchData() {
-    fetch(
-      "http://open-api.myhelsinki.fi/v1/events/",
-      {
-        method: "GET",
-      }
-    )
+    fetch("http://open-api.myhelsinki.fi/v1/events/", {
+      method: "GET",
+    })
       .then((response) => response.json())
       .then((responseData) => {
-
         const sortedEvents = responseData.data.sort(function (a, b) {
-          return (a.event_dates.starting_day < b.event_dates.starting_day) ? -1 : ((a.event_dates.starting_day > b.event_dates.starting_day) ? 1 : 0);
+          return a.event_dates.starting_day < b.event_dates.starting_day
+            ? -1
+            : a.event_dates.starting_day > b.event_dates.starting_day
+            ? 1
+            : 0;
         });
 
         let today = new Date().toISOString();
 
         const filterDates = sortedEvents.filter(function (a) {
           return a.event_dates.starting_day >= today;
-        })
+        });
 
         setListItems(filterDates);
         setListItemsKeep(filterDates);
@@ -64,41 +63,36 @@ export default function Homepage({route, navigation}) {
     fetchData();
   }, []);
 
-
   const renderItem = (item) => {
     return <Event navigation={props.navigation} item={item} />;
   };
 
-
   if (!isReady) {
     return (
       <View style={styles.HomepageContainer}>
-        <Search
-          keepLista={listItemsKeep}
-          parentCallback={callBackFunction}
-        />
+        <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
         <ActivityIndicator style={styles.ActivityIndicator} size="large" />
       </View>
-    )
+    );
   }
 
- 
-
-  
   return (
     <View style={styles.HomepageContainer}>
-        <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
-      <Search
-        keepLista={listItemsKeep}
-        parentCallback={callBackFunction}
-      />
-      <Text style={{marginLeft: 10}}>Päivämäärä</Text>
+      <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
+      <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
+      <Text style={{ marginLeft: 10 }}>Päivämäärä</Text>
       <View style={styles.Buttons}>
-          <Button title='Tänään' onPress={() => navigation.navigate('Eventlist', {data: listItems })} />
-          <Button title='Tänään' onPress={() => navigation.navigate('Eventlist', {data: listItems })} />
-          
-          <DatePicker
-          style={{width: 200}}
+        <Button
+          title="Tänään"
+          onPress={() => navigation.navigate("Eventlist", { data: listItems })}
+        />
+        <Button
+          title="Tänään"
+          onPress={() => navigation.navigate("Eventlist", { data: listItems })}
+        />
+
+        <DatePicker
+          style={{ width: 200 }}
           date={date} //initial date from state
           mode="date" //The enum of date, datetime and time
           placeholder="Valitse päivämäärä"
@@ -109,16 +103,18 @@ export default function Homepage({route, navigation}) {
           cancelBtnText="Cancel"
           customStyles={{
             dateIcon: {
-              position: 'absolute',
+              position: "absolute",
               left: 0,
               top: 4,
-              marginLeft: 0
+              marginLeft: 0,
             },
             dateInput: {
-              marginLeft: 36
-            }
+              marginLeft: 36,
+            },
           }}
-          onDateChange={(date) => navigation.navigate('Eventlist',  {data: data})}
+          onDateChange={(date) =>
+            navigation.navigate("Eventlist", { data: data })
+          }
         />
       </View>
     </View>
@@ -128,19 +124,19 @@ export default function Homepage({route, navigation}) {
 const styles = StyleSheet.create({
   HomepageContainer: {
     flex: 1,
-    marginTop: 30
+    marginTop: 30,
   },
   ActivityIndicator: {
     flex: 1,
   },
   TextContainer: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      marginBottom: 20,
-      marginLeft: 10
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 20,
+    marginLeft: 10,
   },
   Buttons: {
-      flexDirection: 'row',
-      marginLeft: 10
-  }
+    flexDirection: "row",
+    marginLeft: 10,
+  },
 });
