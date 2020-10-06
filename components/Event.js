@@ -52,6 +52,17 @@ export default function Event(props) {
     title = props.item.name.en;
   }
 
+  let image;
+  if (props.item.description.images[0]) {
+    // console.log(props.item.description.images[0]);
+    image = { uri: props.item.description.images[0].url };
+  } else {
+    image = {
+      uri:
+        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
+    };
+  }
+
   //NAVIGOINTI YRITYS KUVASTA EVENTSCREENIIN =>
   //ERROR UNDEFINED IN NOT AN OBJECT(EVALUATING 'NAGATION.NAVIGATE')
   /** YRITETTIIN EVENTLISTIN PUOLELLA MYÖS KUTAKUINKIN NÄIN MITÄ ALLA  
