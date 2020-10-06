@@ -59,7 +59,7 @@ export default function Restaurants() {
   };
 
   return (
-    <View style={{flex:1,marginTop:30,marginLeft:10}}>
+    <View style={{ flex: 1, marginTop: 30, marginLeft: 10 }}>
       <FlatList
         data={listItems}
         keyExtractor={(item) => item.id}

@@ -12,6 +12,7 @@ const MainStackNavigator = () => {
     <Stack.Navigator headerMode={"float"}>
       <Stack.Screen name="Homepage" component={Homepage} />
       <Stack.Screen name="EventScreen" component={EventScreen} />
+      <Stack.Screen name="Eventlist" component={Eventlist} />
     </Stack.Navigator>
   );
 };

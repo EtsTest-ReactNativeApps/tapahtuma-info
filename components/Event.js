@@ -30,6 +30,7 @@ export default function Event(props) {
 
   const navigation = useNavigation();
 
+  let image;
   if (props.item.description.images[0]) {
     // console.log(props.item.description.images[0]);
     image = { uri: props.item.description.images[0].url };
@@ -50,17 +51,6 @@ export default function Event(props) {
     title = props.item.name.fi;
   } else if (props.item.name.en !== null) {
     title = props.item.name.en;
-  }
-
-  let image;
-  if (props.item.description.images[0]) {
-    // console.log(props.item.description.images[0]);
-    image = { uri: props.item.description.images[0].url };
-  } else {
-    image = {
-      uri:
-        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
-    };
   }
 
   //NAVIGOINTI YRITYS KUVASTA EVENTSCREENIIN =>
@@ -86,7 +76,7 @@ export default function Event(props) {
       </View>
       <View>
         <Text
-          onPress={() => navigation.navigate("EventScreen")}
+          onPress={() => navigation.navigate("EventScreen", { propsItem })}
           style={{ fontWeight: "bold", maxWidth: 250 }}
         >
           {title}

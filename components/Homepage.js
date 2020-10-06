@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
-//import DatePicker from "react-native-datepicker";
+import DatePicker from "react-native-datepicker";
 import Search from "./Search";
 import moment from "moment";
 import { NavigationContainer } from "@react-navigation/native";
