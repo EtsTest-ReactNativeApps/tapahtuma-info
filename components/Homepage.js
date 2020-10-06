@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
-import DatePicker from 'react-native-datepicker';
+//import DatePicker from "react-native-datepicker";
 import Search from "./Search";
 
 import {
@@ -17,32 +17,31 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-
 export default function Homepage() {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
-  const [date, setDate] = React.useState('');
+  const [date, setDate] = React.useState("");
 
   function fetchData() {
-    fetch(
-      "http://open-api.myhelsinki.fi/v1/events/",
-      {
-        method: "GET",
-      }
-    )
+    fetch("http://open-api.myhelsinki.fi/v1/events/", {
+      method: "GET",
+    })
       .then((response) => response.json())
       .then((responseData) => {
-
         const sortedEvents = responseData.data.sort(function (a, b) {
-          return (a.event_dates.starting_day < b.event_dates.starting_day) ? -1 : ((a.event_dates.starting_day > b.event_dates.starting_day) ? 1 : 0);
+          return a.event_dates.starting_day < b.event_dates.starting_day
+            ? -1
+            : a.event_dates.starting_day > b.event_dates.starting_day
+            ? 1
+            : 0;
         });
 
         let today = new Date().toISOString();
 
         const filterDates = sortedEvents.filter(function (a) {
           return a.event_dates.starting_day >= today;
-        })
+        });
 
         setListItems(filterDates);
         setListItemsKeep(filterDates);
@@ -68,46 +67,39 @@ export default function Homepage() {
   if (!isReady) {
     return (
       <View style={styles.HomepageContainer}>
-        <Search
-          keepLista={listItemsKeep}
-          parentCallback={callBackFunction}
-        />
+        <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
         <ActivityIndicator style={styles.ActivityIndicator} size="large" />
       </View>
-    )
+    );
   }
-
 
   const getEventsToday = () => {
     let today = new Date().toISOString();
-    
+
     const filterEventsToday = function (listItems) {
-        return listItems.event_dates.starting_day === today }
-    setListItems(filterEventsToday)
-    }
+      return listItems.event_dates.starting_day === today;
+    };
+    setListItems(filterEventsToday);
+  };
 
   const getEventsTomorrow = () => {
-      return null
-  }
+    return null;
+  };
 
   const getEventsChoose = () => {
-      return null
-  }
+    return null;
+  };
 
-  
   return (
     <View style={styles.HomepageContainer}>
-        <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
-      <Search
-        keepLista={listItemsKeep}
-        parentCallback={callBackFunction}
-      />
-      <Text style={{marginLeft: 10}}>Päivämäärä</Text>
+      <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
+      <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
+      <Text style={{ marginLeft: 10 }}>Päivämäärä</Text>
       <View style={styles.Buttons}>
-          <Button title = 'Tänään' onPress={getEventsToday}/>
-          <Button title = 'Huomenna' onPress={getEventsTomorrow}/>
-          
-          <DatePicker
+        <Button title="Tänään" onPress={getEventsToday} />
+        <Button title="Huomenna" onPress={getEventsTomorrow} />
+
+        {/**<DatePicker
           style={{width: 200}}
           date={date} //initial date from state
           mode="date" //The enum of date, datetime and time
@@ -129,7 +121,7 @@ export default function Homepage() {
             }
           }}
           onDateChange={(date) => {setDate({date: date})}}
-        />
+        /> */}
         <Text>{date}</Text>
       </View>
       <FlatList
@@ -145,20 +137,20 @@ export default function Homepage() {
 const styles = StyleSheet.create({
   HomepageContainer: {
     flex: 1,
-    marginTop: 30
+    marginTop: 30,
   },
   ActivityIndicator: {
     flex: 1,
   },
   TextContainer: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      marginTop: 40,
-      marginBottom: 20,
-      marginLeft: 10
+    fontSize: 30,
+    fontWeight: "bold",
+    marginTop: 40,
+    marginBottom: 20,
+    marginLeft: 10,
   },
   Buttons: {
-      flexDirection: 'row',
-      marginLeft: 10
-  }
+    flexDirection: "row",
+    marginLeft: 10,
+  },
 });

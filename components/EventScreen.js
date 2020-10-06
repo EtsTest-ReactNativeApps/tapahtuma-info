@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
+import Eventlist from "./Eventlist";
 
 //import { createStackNavigator } from "@react-navigation/stack";
 
@@ -14,9 +15,10 @@ import {
   ScrollView,
   Linking,
   ActivityIndicator,
+  Image,
 } from "react-native";
 
-export default function EventPage() {
+export default function EventScreen(props) {
   //image
   //title
   //pvm,klo
@@ -24,11 +26,33 @@ export default function EventPage() {
   //description
   //linkki
 
-  //const Stack = createStackNavigator();
+  /*
+  let image;
+  if (props.item.description.images[0]) {
+    // console.log(props.item.description.images[0]);
+    image = { uri: props.item.description.images[0].url };
+  } else {
+    image = {
+      uri:
+        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
+    };
+  }
 
+  const isLinkAvailable = () => {
+    if (props.item.info_url !== null) {
+      Linking.openURL(props.item.info_url);
+    } else {
+      ToastAndroid.showWithGravity(
+        "Linkkiä ei valitettavasti ole saatavilla",
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER
+      );
+    }
+  };
+*/
   return (
     <View style={styles.EventListContainer}>
-     <Text style={{fontSize:40}}>Event page</Text>
+      <Text style={{ fontSize: 40 }}>Event page</Text>
     </View>
   );
 }
