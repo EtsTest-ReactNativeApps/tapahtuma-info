@@ -21,11 +21,7 @@ import {
 } from "react-native";
 
 
-<<<<<<< HEAD
-export default function Homepage(props) {
-=======
 export default function Homepage({route, navigation}) {
->>>>>>> e1ee02c4a6437fa007f52e4c4eeeb70efcbe9b44
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
@@ -68,12 +64,11 @@ export default function Homepage({route, navigation}) {
     fetchData();
   }, []);
 
-<<<<<<< HEAD
+
   const renderItem = (item) => {
     return <Event navigation={props.navigation} item={item} />;
   };
-=======
->>>>>>> e1ee02c4a6437fa007f52e4c4eeeb70efcbe9b44
+
 
   if (!isReady) {
     return (
