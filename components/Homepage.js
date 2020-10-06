@@ -3,6 +3,9 @@ import React from "react";
 import Event from "./Event";
 //import DatePicker from "react-native-datepicker";
 import Search from "./Search";
+import moment from "moment";
+import { NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator} from '@react-navigation/stack';
 
 import {
   StyleSheet,
@@ -17,7 +20,16 @@ import {
   ActivityIndicator,
 } from "react-native";
 
+<<<<<<< HEAD
 export default function Homepage() {
+=======
+
+<<<<<<< HEAD
+export default function Homepage(props) {
+=======
+export default function Homepage({route, navigation}) {
+>>>>>>> e1ee02c4a6437fa007f52e4c4eeeb70efcbe9b44
+>>>>>>> 98b36952382c755029246e8f7509c0d5995217c5
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
@@ -60,9 +72,12 @@ export default function Homepage() {
     fetchData();
   }, []);
 
+<<<<<<< HEAD
   const renderItem = (item) => {
-    return <Event item={item} />;
+    return <Event navigation={props.navigation} item={item} />;
   };
+=======
+>>>>>>> e1ee02c4a6437fa007f52e4c4eeeb70efcbe9b44
 
   if (!isReady) {
     return (
@@ -73,6 +88,7 @@ export default function Homepage() {
     );
   }
 
+<<<<<<< HEAD
   const getEventsToday = () => {
     let today = new Date().toISOString();
 
@@ -89,6 +105,9 @@ export default function Homepage() {
   const getEventsChoose = () => {
     return null;
   };
+=======
+ 
+>>>>>>> 98b36952382c755029246e8f7509c0d5995217c5
 
   return (
     <View style={styles.HomepageContainer}>
@@ -96,10 +115,17 @@ export default function Homepage() {
       <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
       <Text style={{ marginLeft: 10 }}>Päivämäärä</Text>
       <View style={styles.Buttons}>
+<<<<<<< HEAD
         <Button title="Tänään" onPress={getEventsToday} />
         <Button title="Huomenna" onPress={getEventsTomorrow} />
 
         {/**<DatePicker
+=======
+          <Button title='Tänään' onPress={() => navigation.navigate('Eventlist', {data: listItems })} />
+          <Button title='Tänään' onPress={() => navigation.navigate('Eventlist', {data: listItems })} />
+          
+          <DatePicker
+>>>>>>> 98b36952382c755029246e8f7509c0d5995217c5
           style={{width: 200}}
           date={date} //initial date from state
           mode="date" //The enum of date, datetime and time
@@ -120,16 +146,15 @@ export default function Homepage() {
               marginLeft: 36
             }
           }}
+<<<<<<< HEAD
           onDateChange={(date) => {setDate({date: date})}}
         /> */}
         <Text>{date}</Text>
+=======
+          onDateChange={(date) => navigation.navigate('Eventlist',  {data: data})}
+        />
+>>>>>>> 98b36952382c755029246e8f7509c0d5995217c5
       </View>
-      <FlatList
-        style={{ marginLeft: 10 }}
-        data={listItems}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => renderItem(item)}
-      ></FlatList>
     </View>
   );
 }
@@ -143,11 +168,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   TextContainer: {
+<<<<<<< HEAD
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 40,
     marginBottom: 20,
     marginLeft: 10,
+=======
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      marginLeft: 10
+>>>>>>> 98b36952382c755029246e8f7509c0d5995217c5
   },
   Buttons: {
     flexDirection: "row",

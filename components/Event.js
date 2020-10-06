@@ -26,7 +26,7 @@ export default function Event(props) {
   //<Image>{}</Image>
   //<Date>{props.item.event_dates.starting_day}</Date>
 
-  let image;
+  let propsItem = props;
 
   const navigation = useNavigation();
 
@@ -64,7 +64,7 @@ export default function Event(props) {
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10, alignItem: "center" }}>
         <TouchableHighlight
-          onPress={() => navigation.navigate("EventScreen", { key: item.id })}
+          onPress={() => navigation.navigate("EventScreen", { propsItem })}
         >
           <Image
             progressiveRenderingEnabled={true}

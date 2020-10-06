@@ -18,7 +18,7 @@ import {
   Image,
 } from "react-native";
 
-export default function EventScreen(props) {
+export default function EventPage({ navigation, route }) {
   //image
   //title
   //pvm,klo
@@ -37,6 +37,9 @@ export default function EventScreen(props) {
         "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
     };
   }
+  const {propsItem} = route.params
+
+  //const Stack = createStackNavigator();
 
   const isLinkAvailable = () => {
     if (props.item.info_url !== null) {
@@ -53,6 +56,7 @@ export default function EventScreen(props) {
   return (
     <View style={styles.EventListContainer}>
       <Text style={{ fontSize: 40 }}>Event page</Text>
+      <Text>{propsItem.name.fi}</Text>
     </View>
   );
 }
