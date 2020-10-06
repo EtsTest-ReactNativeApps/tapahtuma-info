@@ -3,6 +3,9 @@ import React from "react";
 import Event from "./Event";
 import DatePicker from 'react-native-datepicker';
 import Search from "./Search";
+import moment from "moment";
+import { NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator} from '@react-navigation/stack';
 
 import {
   StyleSheet,
@@ -18,7 +21,7 @@ import {
 } from "react-native";
 
 
-export default function Homepage() {
+export default function Homepage({route, navigation}) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
@@ -61,9 +64,6 @@ export default function Homepage() {
     fetchData();
   }, []);
 
-  const renderItem = (item) => {
-    return <Event item={item} />;
-  };
 
   if (!isReady) {
     return (
@@ -77,22 +77,7 @@ export default function Homepage() {
     )
   }
 
-
-  const getEventsToday = () => {
-    let today = new Date().toISOString();
-    
-    const filterEventsToday = function (listItems) {
-        return listItems.event_dates.starting_day === today }
-    setListItems(filterEventsToday)
-    }
-
-  const getEventsTomorrow = () => {
-      return null
-  }
-
-  const getEventsChoose = () => {
-      return null
-  }
+ 
 
   
   return (
@@ -104,8 +89,8 @@ export default function Homepage() {
       />
       <Text style={{marginLeft: 10}}>Päivämäärä</Text>
       <View style={styles.Buttons}>
-          <Button title = 'Tänään' onPress={getEventsToday}/>
-          <Button title = 'Huomenna' onPress={getEventsTomorrow}/>
+          <Button title='Tänään' onPress={() => navigation.navigate('Eventlist', {data: listItems })} />
+          <Button title='Tänään' onPress={() => navigation.navigate('Eventlist', {data: listItems })} />
           
           <DatePicker
           style={{width: 200}}
@@ -128,16 +113,9 @@ export default function Homepage() {
               marginLeft: 36
             }
           }}
-          onDateChange={(date) => {setDate({date: date})}}
+          onDateChange={(date) => navigation.navigate('Eventlist',  {data: data})}
         />
-        <Text>{date}</Text>
       </View>
-      <FlatList
-        style={{ marginLeft: 10 }}
-        data={listItems}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => renderItem(item)}
-      ></FlatList>
     </View>
   );
 }
@@ -153,7 +131,6 @@ const styles = StyleSheet.create({
   TextContainer: {
       fontSize: 30,
       fontWeight: 'bold',
-      marginTop: 40,
       marginBottom: 20,
       marginLeft: 10
   },
