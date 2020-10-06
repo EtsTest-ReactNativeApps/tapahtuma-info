@@ -18,7 +18,7 @@ import {
 } from "react-native";
 
 
-export default function Homepage() {
+export default function Homepage(props) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
@@ -62,7 +62,7 @@ export default function Homepage() {
   }, []);
 
   const renderItem = (item) => {
-    return <Event item={item} />;
+    return <Event navigation={props.navigation} item={item} />;
   };
 
   if (!isReady) {

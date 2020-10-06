@@ -16,7 +16,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-export default function EventPage() {
+export default function EventPage({navigation, route}) {
   //image
   //title
   //pvm,klo
@@ -24,11 +24,14 @@ export default function EventPage() {
   //description
   //linkki
 
+  const {propsItem} = route.params
+
   //const Stack = createStackNavigator();
 
   return (
     <View style={styles.EventListContainer}>
      <Text style={{fontSize:40}}>Event page</Text>
+     <Text>{propsItem.name.fi}</Text>
     </View>
   );
 }
