@@ -20,10 +20,12 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const EventlistStack = createStackNavigator();
 
-export default function Eventlist(props) {
+export default function Eventlist({ navigation, route }) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
+
+  const { data } = route.params;
 
   function fetchData() {
     fetch("http://open-api.myhelsinki.fi/v1/events/", {
@@ -59,7 +61,8 @@ export default function Eventlist(props) {
   }
 
   React.useEffect(() => {
-    fetchData();
+    setListItems(data)
+    setListItemsKeep(data)
   }, []);
 
   const renderItem = (item) => {

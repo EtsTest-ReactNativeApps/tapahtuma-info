@@ -1,30 +1,58 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
-import DatePicker from "react-native-datepicker";
+import DateTimePicker from '@react-native-community/datetimepicker';
 import Search from "./Search";
 import moment from "moment";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { useEffect } from "react";
 
 import {
   StyleSheet,
   Text,
   View,
   Button,
-  TextInput,
-  FlatList,
   Alert,
-  ScrollView,
-  Linking,
   ActivityIndicator,
 } from "react-native";
 
-export default function Homepage({ route, navigation }) {
+
+export default function Homepage({ navigation }) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(false);
-  const [date, setDate] = React.useState("");
+  const [date, setDate] = React.useState(new Date(1598051730000));
+  const [mode, setMode] = React.useState('date');
+  const [show, setShow] = React.useState(false);
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  // Datepickerin constit
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    //setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+  
+  const getEventsToday = () => {
+    let now = new Date()
+    let nowString = now.toISOString()
+    let nextMidnight = moment( moment().format('YYYY-MM-DD') + ' 23:59:00' ).unix()
+    let eventsToday = listItems.filter( event => event.event_dates.starting_day >= nowString).filter( event =>
+      event.event_dates.starting_day <= nextMidnight)
+     // setListItemsKeep(eventsToday)
+      navigation.navigate("Eventlist", { data: eventsToday})
+  }
 
   function fetchData() {
     fetch("http://open-api.myhelsinki.fi/v1/events/", {
@@ -84,38 +112,23 @@ export default function Homepage({ route, navigation }) {
       <View style={styles.Buttons}>
         <Button
           title="Tänään"
-          onPress={() => navigation.navigate("Eventlist", { data: listItems })}
+          onPress={_ => getEventsToday()}
         />
         <Button
-          title="Tänään"
+          title="Huomenna"
           onPress={() => navigation.navigate("Eventlist", { data: listItems })}
         />
-
-        <DatePicker
-          style={{ width: 200 }}
-          date={date} //initial date from state
-          mode="date" //The enum of date, datetime and time
-          placeholder="Valitse päivämäärä"
-          format="DD-MM-YYYY"
-          minDate="04-10-2020"
-          maxDate="01-01-2022"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              position: "absolute",
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-          }}
-          onDateChange={(date) =>
-            navigation.navigate("Eventlist", { data: data })
-          }
+        <Button onPress={showDatepicker} title="Valitse pvm" />
+        {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          display="default"
+          onChange={onChange} 
         />
+        )}
       </View>
     </View>
   );
