@@ -44,11 +44,11 @@ export default function Homepage({ navigation }) {
     showMode('date');
   };
   
-  const getEventsToday = () => {
+  async function getEventsToday() {
     let now = new Date()
     let nowString = now.toISOString()
     let nextMidnight = moment( moment().format('YYYY-MM-DD') + ' 23:59:00' ).unix()
-    let eventsToday = listItems.filter( event => event.event_dates.starting_day >= nowString).filter( event =>
+    let eventsToday = await listItems.filter( event => event.event_dates.starting_day >= nowString).filter( event =>
       event.event_dates.starting_day <= nextMidnight)
      // setListItemsKeep(eventsToday)
       navigation.navigate("Eventlist", { data: eventsToday})
