@@ -7,7 +7,6 @@ import moment from "moment";
 import 'moment-timezone';
 import {useEffect} from "react";
 
-
 import {
     StyleSheet,
     Text,
@@ -51,7 +50,7 @@ export default function Homepage({navigation}) {
 
     function getEventsToday() {
 
-        let nextMidnight = moment(moment().format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
+        let nextMidnight = moment( moment().format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
 
         // jos haluaa midnight ajan oikein ottaa ton .add(2,"days") pois tuolta. Lisää 2 päivää siihen aikaan jotta helpompi debugaa.
         // kellonajat ovat UTC ajassa joten ovat 3 h jäljessä suomen aikaan.
