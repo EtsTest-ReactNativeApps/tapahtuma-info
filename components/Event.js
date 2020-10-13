@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 
 import {
@@ -14,22 +13,13 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export default function Event(props) {
-  // const [picture, setPicture] = React.useState();
-  // const [title, setTitle] = React.useState();
-  // const [eDate, setEDate] = React.useState();
-  // const [address, setAddress] = React.useState();
-  //<Image>{}</Image>
-  //<Date>{props.item.event_dates.starting_day}</Date>
 
   let propsItem = props;
-
-  
 
   const navigation = useNavigation();
 
   let image;
   if (props.item.description.images[0]) {
-    // console.log(props.item.description.images[0]);
     image = { uri: props.item.description.images[0].url };
   } else {
     image = {
@@ -42,9 +32,8 @@ export default function Event(props) {
     "DD.MM.YYYY, H:mm"
   );
 
-  let title; // Tarkastetaan onko suomenkielistä name atribuuttia saatavilla
+  let title; 
   if (props.item.name.fi !== null) {
-    // jos ei ole käytetään englanninkieleistä
     title = props.item.name.fi;
   } else if (props.item.name.en !== null) {
     title = props.item.name.en;

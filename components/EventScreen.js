@@ -3,27 +3,23 @@ import React from "react";
 import moment from "moment";
 import { WebView } from "react-native-webview";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
 
-//import { createStackNavigator } from "@react-navigation/stack";
 
 import {
   StyleSheet,
   Text,
   View,
-  Button,
-  TextInput,
-  Alert,
-  ScrollView,
   Linking,
-  ActivityIndicator,
   Image,
   ToastAndroid,
 } from "react-native";
 
 export default function EventScreen({ navigation, route }) {
- 
   const { propsItem } = route.params;
+
+  let location = propsItem.item.location.address.street_address + ', ' + propsItem.item.location.address.locality;
 
   const isLinkAvailable = () => {
     if (propsItem.item.info_url !== null) {
@@ -38,7 +34,6 @@ export default function EventScreen({ navigation, route }) {
   };
   let image;
   if (propsItem.item.description.images[0]) {
-    // console.log(props.item.description.images[0]);
     image = { uri: propsItem.item.description.images[0].url };
   } else {
     image = {
@@ -47,57 +42,60 @@ export default function EventScreen({ navigation, route }) {
     };
   }
 
-  let title; // Tarkastetaan onko suomenkielistä name atribuuttia saatavilla
+  let title; 
   if (propsItem.item.name.fi !== null) {
-    // jos ei ole käytetään englanninkieleistä
     title = propsItem.item.name.fi;
   } else if (propsItem.item.name.en !== null) {
     title = propsItem.item.name.en;
   }
 
-
-
-  const newDate = moment(propsItem.item.event_dates.starting_day).format(
-    "DD.MM.YYYY"
-  );
+  let newDate;
+  if (moment(propsItem.item.event_dates.starting_day).format("DD.MM.YYYY") === moment(propsItem.item.event_dates.ending_day).format("DD.MM.YYYY")){
+    newDate = moment(propsItem.item.event_dates.starting_day).format("DD.MM.YYYY");
+  }else{
+    newDate = moment(propsItem.item.event_dates.starting_day).format("DD.MM.YYYY") + ' - ' + moment(propsItem.item.event_dates.ending_day).format("DD.MM.YYYY");
+  }
 
   const newHours = moment(propsItem.item.event_dates.starting_day).format(
     "H:mm"
   );
 
-  //let description = ;
-  // <Text>{description}</Text>
+  let htmlToWebView = propsItem.item.description.body 
+ 
   return (
     <View style={styles.EventListContainer}>
-    <Image style={styles.Image}
-            source={image}
-            progressiveRenderingEnabled={true}
-            />
+      <Image
+        style={styles.Image}
+        source={image}
+        progressiveRenderingEnabled={true}
+      />
       <Text style={{ fontWeight: "bold", padding: 10 }}>{title}</Text>
+      <View style={styles.Infobox}>
       <Text>
-      <Ionicons name="md-calendar"/>
-      <Text>{newDate}</Text> 
-      </Text>
-      <Text>
-      <Ionicons name="md-clock"/>
-      <Text>{newHours}</Text>
+        <Ionicons name="md-calendar" />    {newDate} 
       </Text>
       <Text>
-      <Ionicons name="md-locate"/>
-      <Text>{propsItem.item.location.address.street_address}, 
-      {propsItem.item.location.address.postal_code} {propsItem.item.location.address.locality}</Text>
+        <Ionicons name="md-time" />    {newHours}
       </Text>
       <Text>
-      <Ionicons name="md-link"/>
-      <Text style={{ padding: 10 }} onPress={() => isLinkAvailable()}>
-        Linkki tapahtuman sivuille
+        <Ionicons name="md-globe" />    {propsItem.item.location.address.street_address}, {propsItem.item.location.address.postal_code}{" "}{propsItem.item.location.address.locality} 
       </Text>
+      <Text onPress={() => navigation.navigate("EventMapScreen", { location })}>
+        <Ionicons name="md-pin" />    Näytä kartalta 
       </Text>
-      <WebView source={{ html: propsItem.item.description.body }}></WebView>
-      
+     
+      </View>
+      <WebView source={{html: htmlToWebView}} style={{flex: 1, flexWrap: 'wrap', position: 'relative', }}></WebView>
+      <Text style={styles.Infobox}>
+        <Ionicons name="md-link" />    <Text style={{ padding: 10 }} onPress={() => isLinkAvailable()}>
+          Linkki tapahtuman sivuille
+        </Text> 
+      </Text>
+      <StatusBar style="auto" />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   EventListContainer: {
     flex: 1,
@@ -106,8 +104,10 @@ const styles = StyleSheet.create({
   ActivityIndicator: {
     flex: 1,
   },
-  Image: 
-  {
-  flex: 1,
+  Image: {
+    flex: 1,
+  },
+  Infobox: {
+    padding: 10
   },
 });
