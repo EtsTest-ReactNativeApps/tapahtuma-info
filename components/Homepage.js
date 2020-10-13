@@ -15,6 +15,7 @@ import {
     Alert,
     ActivityIndicator,
 } from "react-native";
+import { add } from "react-native-reanimated";
 
 
 export default function Homepage({navigation}) {
@@ -69,6 +70,21 @@ export default function Homepage({navigation}) {
             event.event_dates.starting_day <= nextMidnight)
         // setListItemsKeep(eventsToday)
         navigation.navigate("Eventlist", {data: eventsToday})
+    }
+
+    function getEventsTomorrow() {
+
+        let tomorrowMidnight = moment( moment().tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 23:59:00 ' ).toISOString()
+
+        let tomorrowMorning = moment( moment().add(1, 'days').format('YYYY-MM-DD') + ' 00:00:00 ' ).toISOString()
+
+        let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => event.event_dates.starting_day <= tomorrowMidnight)
+
+        navigation.navigate("Eventlist", {data: eventsTomorrow})
+
+        console.log(tomorrowMidnight)
+        console.log(tomorrowMorning)
+
     }
 
     function fetchData() {
@@ -133,7 +149,7 @@ export default function Homepage({navigation}) {
                 />
                 <Button
                     title="Huomenna"
-                    onPress={() => navigation.navigate("Eventlist", {data: listItems})}
+                    onPress={_ => getEventsTomorrow()}
                 />
                 <Button onPress={showDatepicker} title="Valitse pvm"/>
                 {show && (
