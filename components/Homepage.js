@@ -4,8 +4,9 @@ import Event from "./Event";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Search from "./Search";
 import moment from "moment";
+import 'moment-timezone';
 import {useEffect} from "react";
-import moment from "moment-timezone";
+
 
 import {
     StyleSheet,
@@ -34,7 +35,9 @@ export default function Homepage({navigation}) {
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         //setShow(Platform.OS === 'ios');
-        setDate(currentDate);
+        console.log(currentDate)
+      //  setDate(currentDate);
+      //  navigation.navigate("Eventlist", {data: currentDate})
     };
 
     const showMode = (currentMode) => {
@@ -48,7 +51,7 @@ export default function Homepage({navigation}) {
 
     function getEventsToday() {
 
-        let nextMidnight = moment( moment().tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
+        let nextMidnight = moment(moment().format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
 
         // jos haluaa midnight ajan oikein ottaa ton .add(2,"days") pois tuolta. Lisää 2 päivää siihen aikaan jotta helpompi debugaa.
         // kellonajat ovat UTC ajassa joten ovat 3 h jäljessä suomen aikaan.
@@ -68,9 +71,10 @@ export default function Homepage({navigation}) {
 
         let eventsToday = listItems.filter(event => event.event_dates.starting_day >= momentTime).filter(event =>
             event.event_dates.starting_day <= nextMidnight)
-        // setListItemsKeep(eventsToday)
+        
         navigation.navigate("Eventlist", {data: eventsToday})
     }
+
     function getEventsTomorrow() {
        
         let tomorrowNight = moment().add(1, 'day').endOf('day').toISOString()
@@ -85,7 +89,7 @@ export default function Homepage({navigation}) {
         navigation.navigate("Eventlist", {data: eventsTomorrow})
 
     }
-    
+
     function fetchData() {
         fetch("http://open-api.myhelsinki.fi/v1/events/", {
             method: "GET",
@@ -142,15 +146,21 @@ export default function Homepage({navigation}) {
             <Search keepLista={listItemsKeep} parentCallback={callBackFunction}/>
             <Text style={{marginLeft: 10}}>Päivämäärä</Text>
             <View style={styles.Buttons}>
+              <View style={{padding: 5}}>
                 <Button
                     title="Tänään"
                     onPress={_ => getEventsToday()}
                 />
+              </View>
+              <View style={{padding: 5}}>
                 <Button
                     title="Huomenna"
                     onPress={_ => getEventsTomorrow()}
                 />
+              </View>
+              <View style={{padding: 5}}>
                 <Button onPress={showDatepicker} title="Valitse pvm"/>
+                </View>
                 {show && (
                     <DateTimePicker
                         testID="dateTimePicker"
