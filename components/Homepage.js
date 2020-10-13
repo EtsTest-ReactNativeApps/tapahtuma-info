@@ -71,22 +71,21 @@ export default function Homepage({navigation}) {
         // setListItemsKeep(eventsToday)
         navigation.navigate("Eventlist", {data: eventsToday})
     }
-
     function getEventsTomorrow() {
+       
+        let tomorrowNight = moment().add(1, 'day').endOf('day').toISOString()
+        let tomorrowMorning = moment().add(1, 'day').startOf('day').toISOString();
 
-        let tomorrowMidnight = moment( moment().add(1, 'days').tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 23:59:00 ' ).toISOString()
+        let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => 
+            event.event_dates.starting_day <= tomorrowNight)
 
-        let tomorrowMorning = moment( moment().add(1, 'days').tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 00:00:00 ' ).toISOString()
-
-        let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => event.event_dates.starting_day <= tomorrowMidnight)
+        console.log(tomorrowMorning)
+        console.log(tomorrowNight)
 
         navigation.navigate("Eventlist", {data: eventsTomorrow})
 
-        console.log(tomorrowMidnight)
-        console.log(tomorrowMorning)
-
     }
-
+    
     function fetchData() {
         fetch("http://open-api.myhelsinki.fi/v1/events/", {
             method: "GET",
