@@ -3,7 +3,7 @@ import React from "react";
 import Event from "./Event";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Search from "./Search";
-//import moment from "moment";
+import moment from "moment";
 import {useEffect} from "react";
 import moment from "moment-timezone";
 
@@ -74,9 +74,9 @@ export default function Homepage({navigation}) {
 
     function getEventsTomorrow() {
 
-        let tomorrowMidnight = moment( moment().tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 23:59:00 ' ).toISOString()
+        let tomorrowMidnight = moment( moment().add(1, 'days').tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 23:59:00 ' ).toISOString()
 
-        let tomorrowMorning = moment( moment().add(1, 'days').format('YYYY-MM-DD') + ' 00:00:00 ' ).toISOString()
+        let tomorrowMorning = moment( moment().add(1, 'days').tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 00:00:00 ' ).toISOString()
 
         let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => event.event_dates.starting_day <= tomorrowMidnight)
 
