@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Search from "./Search";
 import moment from "moment";
 import {useEffect} from "react";
-import moment from "moment-timezone";
+import "moment-timezone";
 
 import {
     StyleSheet,
@@ -48,7 +48,7 @@ export default function Homepage({navigation}) {
 
     function getEventsToday() {
 
-        let nextMidnight = moment( moment().tz("Europe/Helsinki").format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
+        let nextMidnight = moment( moment().format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
 
         // jos haluaa midnight ajan oikein ottaa ton .add(2,"days") pois tuolta. Lisää 2 päivää siihen aikaan jotta helpompi debugaa.
         // kellonajat ovat UTC ajassa joten ovat 3 h jäljessä suomen aikaan.
@@ -71,6 +71,7 @@ export default function Homepage({navigation}) {
         // setListItemsKeep(eventsToday)
         navigation.navigate("Eventlist", {data: eventsToday})
     }
+
     function getEventsTomorrow() {
        
         let tomorrowNight = moment().add(1, 'day').endOf('day').toISOString()
