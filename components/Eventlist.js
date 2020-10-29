@@ -25,14 +25,6 @@ export default function Eventlist({navigation, route}) {
     const [listItemsKeep, setListItemsKeep] = React.useState([]);
     const [isReady, setReady] = React.useState(true);
 
-
-    // FIXME: kun bottomtabnavigatorista hakeutuu kotisivulta eventlistsivulle, tulee virhe "undefined in not an object (evaluating route.params.data"
-    // liittyy varmaan siihen kun on kaksi erilaista navigatoria.
-
-
-
-    
-
     function fetchData() {
         fetch("http://open-api.myhelsinki.fi/v1/events/", {
             method: "GET",
