@@ -14,6 +14,7 @@ import {
     Button,
     Alert,
     ActivityIndicator,
+    Platform
 } from "react-native";
 import { add } from "react-native-reanimated";
 
@@ -33,9 +34,10 @@ export default function Homepage({navigation}) {
     // Datepickerin constit
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        //setShow(Platform.OS === 'ios');
+        setShow(Platform.OS === 'ios');
         console.log(currentDate)
-      //  setDate(currentDate);
+        setDate(currentDate);
+        setDate = (event, date) => {};
       //  navigation.navigate("Eventlist", {data: currentDate})
     };
 
