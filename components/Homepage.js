@@ -14,6 +14,7 @@ import {
     Button,
     Alert,
     ActivityIndicator,
+    Platform,
 } from "react-native";
 import { add } from "react-native-reanimated";
 
@@ -22,7 +23,7 @@ export default function Homepage({navigation}) {
     const [listItems, setListItems] = React.useState([]);
     const [listItemsKeep, setListItemsKeep] = React.useState([]);
     const [isReady, setReady] = React.useState(false);
-    const [date, setDate] = React.useState(new Date(1598051730000));
+    const [date, setDate] = React.useState(new Date());
     const [mode, setMode] = React.useState('date');
     const [show, setShow] = React.useState(false);
 
@@ -33,10 +34,18 @@ export default function Homepage({navigation}) {
     // Datepickerin constit
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        //setShow(Platform.OS === 'ios');
-        console.log(currentDate)
-      //  setDate(currentDate);
-      //  navigation.navigate("Eventlist", {data: currentDate})
+        setShow(Platform.OS === 'ios');
+       // console.log(currentDate)
+        setDate(currentDate);
+
+        let selectedMorning = moment(currentDate).startOf('day').toISOString()
+        let selectedNight = moment(currentDate).endOf('day').toISOString()
+        console.log(selectedNight)
+        console.log(selectedMorning)
+
+        let eventsSelectedDay = listItems.filter(event => event.event_dates.starting_day >= selectedMorning).filter(event =>
+            event.event_dates.starting_day <= selectedNight)
+        navigation.navigate("Eventlist", {data: eventsSelectedDay})
     };
 
     const showMode = (currentMode) => {
@@ -76,8 +85,8 @@ export default function Homepage({navigation}) {
 
     function getEventsTomorrow() {
        
-        let tomorrowNight = moment().add(1, 'day').endOf('day').toISOString()
         let tomorrowMorning = moment().add(1, 'day').startOf('day').toISOString();
+        let tomorrowNight = moment().add(1, 'day').endOf('day').toISOString()
 
         let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => 
             event.event_dates.starting_day <= tomorrowNight)

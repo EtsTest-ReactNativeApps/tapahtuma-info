@@ -29,6 +29,7 @@ export default function Eventlist({navigation, route}) {
     // FIXME: kun bottomtabnavigatorista hakeutuu kotisivulta eventlistsivulle, tulee virhe "undefined in not an object (evaluating route.params.data"
     // liittyy varmaan siihen kun on kaksi erilaista navigatoria.
     const {data} = route.params;
+    
 
     function fetchData() {
         fetch("http://open-api.myhelsinki.fi/v1/events/", {
