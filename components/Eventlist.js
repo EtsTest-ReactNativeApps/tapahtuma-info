@@ -28,7 +28,9 @@ export default function Eventlist({navigation, route}) {
 
     // FIXME: kun bottomtabnavigatorista hakeutuu kotisivulta eventlistsivulle, tulee virhe "undefined in not an object (evaluating route.params.data"
     // liittyy varmaan siihen kun on kaksi erilaista navigatoria.
-    const {data} = route.params;
+
+
+
     
 
     function fetchData() {
@@ -65,8 +67,13 @@ export default function Eventlist({navigation, route}) {
     }
 
     React.useEffect(() => {
+      if(route.params === undefined){
+        fetchData();
+      }else {
+        const {data} = route.params;
         setListItems(data)
         setListItemsKeep(data)
+      }
     }, []);
 
     const renderItem = (item) => {
