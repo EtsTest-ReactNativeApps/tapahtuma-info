@@ -11,8 +11,8 @@ const Stack = createStackNavigator();
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator headerMode={"float"}>
-      <Stack.Screen name="Homepage" component={Homepage} />
-      <Stack.Screen name="Eventlist" component={Eventlist} />
+      <Stack.Screen  options={{headerShown:false}} name="Homepage" component={Homepage} />
+      <Stack.Screen options={{title:"Lista"}} name="Eventlist" component={Eventlist} />
       <Stack.Screen name="EventScreen" component={EventScreen} />
       <Stack.Screen name='EventMapScreen' component={EventMapScreen} />
     </Stack.Navigator>
