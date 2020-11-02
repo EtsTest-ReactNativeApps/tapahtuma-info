@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { MainStackNavigator, EventStackNavigator } from "./MainStackNavigator";
 import Eventlist from "./Eventlist";
-import Restaurants from "./Restaurants";
 import Homepage from "./Homepage";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,8 +18,6 @@ const BottomTabNavigator = () => {
 
           if (route.name === "Tapahtumat") {
             iconName = "md-list";
-          } else if (route.name === "Ravintolat") {
-            iconName = "md-restaurant";
           } else {
             iconName = "md-home";
           }
@@ -31,7 +28,6 @@ const BottomTabNavigator = () => {
     >
       <Tab.Screen name="Etusivu" component={MainStackNavigator} />
       <Tab.Screen name="Tapahtumat" component={Eventlist} />
-      <Tab.Screen name="Ravintolat" component={Restaurants} />
     </Tab.Navigator>
   );
 };

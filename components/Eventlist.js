@@ -26,12 +26,15 @@ export default function Eventlist(props) {
   const [isReady, setReady] = React.useState(false);
 
   function fetchData() {
-    fetch("http://open-api.myhelsinki.fi/v1/events/", {
-      method: "GET",
-    })
+    fetch(
+      "https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=0&endIndex=50",
+      {
+        method: "GET",
+      }
+    )
       .then((response) => response.json())
       .then((responseData) => {
-        const sortedEvents = responseData.data.sort(function (a, b) {
+        /* const sortedEvents = responseData.data.sort(function (a, b) {
           return a.event_dates.starting_day < b.event_dates.starting_day
             ? -1
             : a.event_dates.starting_day > b.event_dates.starting_day
@@ -44,9 +47,9 @@ export default function Eventlist(props) {
         const filterDates = sortedEvents.filter(function (a) {
           return a.event_dates.starting_day >= today;
         });
-
-        setListItems(filterDates);
-        setListItemsKeep(filterDates);
+*/
+        setListItems(responseData);
+        setListItemsKeep(responseData);
         setReady(true);
       })
       .catch((error) => {
