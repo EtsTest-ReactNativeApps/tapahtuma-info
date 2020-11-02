@@ -1,4 +1,3 @@
-import {StatusBar} from "expo-status-bar";
 import React from "react";
 import Event from "./Event";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -6,7 +5,6 @@ import Search from "./Search";
 import moment from "moment";
 import 'moment-timezone';
 import {useEffect} from "react";
-
 import {
     StyleSheet,
     Text,
@@ -16,7 +14,6 @@ import {
     ActivityIndicator,
     Platform,
 } from "react-native";
-import { add } from "react-native-reanimated";
 
 
 export default function Homepage({navigation}) {
@@ -32,10 +29,9 @@ export default function Homepage({navigation}) {
     }, [])
 
     // Datepickerin constit
-    const onChange = (event, selectedDate) => {
+    const onChange = (selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
-       // console.log(currentDate)
         setDate(currentDate);
 
         let selectedMorning = moment(currentDate).startOf('day').toISOString()
@@ -61,21 +57,7 @@ export default function Homepage({navigation}) {
 
         let nextMidnight = moment( moment().format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
 
-        // jos haluaa midnight ajan oikein ottaa ton .add(2,"days") pois tuolta. Lisää 2 päivää siihen aikaan jotta helpompi debugaa.
-        // kellonajat ovat UTC ajassa joten ovat 3 h jäljessä suomen aikaan.
-
-        // data menee nytten kivasti eventlista sivulle.
-
-        //BUG !! tapahtumat eivät tule järjestyksessä eventlist pagelle. Viimeisimmät elementit saattavat heitellä ajassaan
-
-        // TODO selvitä ovatko eventtien ajat UTC ajassa ja pitäisikö nextMidnight ja momentTime olla UTC ajassa vai miten
-        // APIssa tapahtumien ajat 2 tuntia jäljessä (Eli luultabasti UTC aika)
-
         let momentTime = moment(moment().format()).toISOString()
-
-
-        console.log(momentTime)
-        console.log(nextMidnight)
 
         let eventsToday = listItems.filter(event => event.event_dates.starting_day >= momentTime).filter(event =>
             event.event_dates.starting_day <= nextMidnight)
@@ -96,6 +78,76 @@ export default function Homepage({navigation}) {
 
         navigation.navigate("Eventlist", {data: eventsTomorrow})
 
+    }
+
+    function getMusicEvents() {
+        fetch("http://open-api.myhelsinki.fi/v1/events/?tags_filter=music", {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((responseData) => {
+                const musicEvents = responseData.data.sort(function (a, b) {
+                    return a.event_dates.starting_day < b.event_dates.starting_day
+                        ? -1
+                        : a.event_dates.starting_day > b.event_dates.starting_day
+                            ? 1
+                            : 0;
+                });
+
+                let today = new Date().toISOString();
+
+                const events = musicEvents.filter(function (a) {
+                    return a.event_dates.starting_day >= today;
+                });
+                console.log(musicEvents)
+                navigation.navigate("Eventlist", {data: events})
+            })   
+    }
+
+    function getCultureEvents() {
+        fetch("http://open-api.myhelsinki.fi/v1/events/?tags_filter=culture", {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((responseData) => {
+                const cultureEvents = responseData.data.sort(function (a, b) {
+                    return a.event_dates.starting_day < b.event_dates.starting_day
+                        ? -1
+                        : a.event_dates.starting_day > b.event_dates.starting_day
+                            ? 1
+                            : 0;
+                });
+
+                let today = new Date().toISOString();
+
+                const events = cultureEvents.filter(function (a) {
+                    return a.event_dates.starting_day >= today;
+                });
+                navigation.navigate("Eventlist", {data: events})
+            })   
+    }
+
+    function getFestivalEvents() {
+        fetch("http://open-api.myhelsinki.fi/v1/events/?tags_filter=festivals", {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((responseData) => {
+                const festivalEvents = responseData.data.sort(function (a, b) {
+                    return a.event_dates.starting_day < b.event_dates.starting_day
+                        ? -1
+                        : a.event_dates.starting_day > b.event_dates.starting_day
+                            ? 1
+                            : 0;
+                });
+
+                let today = new Date().toISOString();
+
+                const events = festivalEvents.filter(function (a) {
+                    return a.event_dates.starting_day >= today;
+                });
+                navigation.navigate("Eventlist", {data: events})
+            })   
     }
 
     function fetchData() {
@@ -134,10 +186,6 @@ export default function Homepage({navigation}) {
     React.useEffect(() => {
         fetchData();
     }, []);
-
-    const renderItem = (item) => {
-        return <Event navigation={props.navigation} item={item}/>;
-    };
 
     if (!isReady) {
         return (
@@ -179,6 +227,27 @@ export default function Homepage({navigation}) {
                         onChange={onChange}
                     />
                 )}
+            </View>
+            <Text style={{marginLeft: 10}}>Valitse luokan mukaan</Text>
+            <View style={styles.Buttons}>
+                <View style={{padding: 5}}>
+                    <Button
+                        title="Musiikki"
+                        onPress={_ => getMusicEvents()}
+                    />
+                </View>
+                <View style={{padding: 5}}>
+                    <Button
+                        title="Kulttuuritapahtumat"
+                        onPress={_ => getCultureEvents()}
+                    />
+                </View>
+                <View style={{padding: 5}}>
+                    <Button
+                        title="Festivaalit"
+                        onPress={_ => getFestivalEvents()}
+                    />
+                </View>
             </View>
         </View>
     );
