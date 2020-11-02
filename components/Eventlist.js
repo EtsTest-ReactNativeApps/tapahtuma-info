@@ -26,28 +26,20 @@ export default function Eventlist(props) {
   const [isReady, setReady] = React.useState(false);
 
   function fetchData() {
+    let startIndex = 0; //fetcataan 100 eventtiä
+    let endIndex = 100;
+
     fetch(
-      "https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=0&endIndex=50",
+      "https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=" +
+        startIndex +
+        "&endIndex=" +
+        endIndex,
       {
         method: "GET",
       }
     )
       .then((response) => response.json())
       .then((responseData) => {
-        /* const sortedEvents = responseData.data.sort(function (a, b) {
-          return a.event_dates.starting_day < b.event_dates.starting_day
-            ? -1
-            : a.event_dates.starting_day > b.event_dates.starting_day
-            ? 1
-            : 0;
-        });
-
-        let today = new Date().toISOString();
-
-        const filterDates = sortedEvents.filter(function (a) {
-          return a.event_dates.starting_day >= today;
-        });
-*/
         setListItems(responseData);
         setListItemsKeep(responseData);
         setReady(true);
