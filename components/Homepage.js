@@ -34,8 +34,10 @@ export default function Homepage({navigation}) {
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
 
-        let selectedMorning = moment(currentDate).startOf('day').toISOString()
-        let selectedNight = moment(currentDate).endOf('day').toISOString()
+        pickedDate = currentDate.nativeEvent.timestamp
+
+        let selectedMorning = moment(pickedDate).startOf('day').toISOString()
+        let selectedNight = moment(pickedDate).endOf('day').toISOString()
         console.log(selectedNight)
         console.log(selectedMorning)
 
