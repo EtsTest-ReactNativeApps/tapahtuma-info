@@ -1,5 +1,4 @@
 import React from "react";
-import Event from "./Event";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Search from "./Search";
 import moment from "moment";
@@ -177,7 +176,7 @@ export default function Homepage({navigation}) {
                 setReady(true);
             })
             .catch((error) => {
-                Alert.alert("Error", error);
+                Alert.alert('Error:', error.message)
             });
     }
 
