@@ -191,16 +191,20 @@ export default function Homepage({navigation}) {
     if (!isReady) {
         return (
             <View style={styles.HomepageContainer}>
-                <Search keepLista={listItemsKeep} parentCallback={callBackFunction}/>
+                <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
                 <ActivityIndicator style={styles.ActivityIndicator} size="large"/>
             </View>
         );
     }
 
+    
+
     return (
         <View style={styles.HomepageContainer}>
             <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
-            <Search keepLista={listItemsKeep} parentCallback={callBackFunction}/>
+            <Search keepLista={listItemsKeep} 
+                    parentCallback={callBackFunction} />
+            <Button title = 'SEARCH' onPress={() => navigation.navigate('Eventlist', {data: listItems})}/>
             <Text style={{marginLeft: 10}}>Päivämäärä</Text>
             <View style={styles.Buttons}>
               <View style={{padding: 5}}>
