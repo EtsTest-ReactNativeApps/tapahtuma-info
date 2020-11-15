@@ -3,6 +3,8 @@ import React, { Component } from "react";
 //import ReactTable from "react-table-v6";
 import { useNavigation } from "@react-navigation/native";
 import { getDistance, orderByDistance } from "geolib";
+import { Ionicons } from "@expo/vector-icons";
+import { Icon } from "react-native-elements";
 
 import {
   StyleSheet,
@@ -16,7 +18,6 @@ import {
   ScrollView,
   Linking,
 } from "react-native";
-import { add } from "react-native-reanimated";
 
 export default function Restaurants({ navigation, route }) {
   const { propsItem } = route.params;
@@ -84,20 +85,86 @@ export default function Restaurants({ navigation, route }) {
       openingHours = "Suljettu";
     } else {
       openingHours =
-        "Aukiolo: " +
+        "Aukiolo tänään: " +
         item.opening_hours.hours[dayArr].opens.substring(0, 5) +
         " - " +
         item.opening_hours.hours[dayArr].closes.substring(0, 5);
     }
+  };
+  /*
+  const message = (item) => {
+
+    " \n Ma " +
+      item.opening_hours.hours[0].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[0].closes.substring(0, 5) +
+      "\n Ti " +
+      item.opening_hours.hours[1].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[1].closes.substring(0, 5) +
+      "\n Ke " +
+      item.opening_hours.hours[2].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[2].closes.substring(0, 5) +
+      "\n To " +
+      item.opening_hours.hours[3].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[3].closes.substring(0, 5) +
+      "\n Pe " +
+      item.opening_hours.hours[4].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[4].closes.substring(0, 5) +
+      "\n La " +
+      item.opening_hours.hours[5].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[5].closes.substring(0, 5) +
+      "\n Su " +
+      item.opening_hours.hours[6].opens.substring(0, 5) +
+      " - " +
+      item.opening_hours.hours[6].closes.substring(0, 5);
+  };
+*/
+  const weekdays = ["ma", "ti", "ke", "to", "pe", "la", "su"];
+  //i:n pitäisi palauttaa opening_hours arraysta jonopaikan, arvot 0-6
+  let hourMsg = [];
+  const hourM = (item) => {
+    for (i = 0; i < weekdays.length; i++) {
+      if (item.opening_hours.hours[i].opens === null) {
+        hourMsg.push("Suljettu \n");
+      } else {
+        hourMsg.push(
+          item.opening_hours.hours[i].opens.substring(0, 5) +
+            " - " +
+            item.opening_hours.hours[i].closes.substring(0, 5) +
+            "\n"
+        );
+      }
+    }
+  }; //Tulostaa ravintoloiden aukioloajat peräkkäin
+
+  const alertHours = (item) => {
+    Alert.alert("Aukiolot");
   };
 
   React.useEffect(() => {
     fetchData();
   }, []);
 
+  const EmptyListMessage = ({ item }) => {
+    return (
+      <Text style={styles.emptyListStyle} onPress={() => getItem(item)}>
+        Ei ravintoloita lähettyvillä
+      </Text>
+    );
+  };
+
   const renderItem = (item) => {
     iconPhoto(item);
     hours(item);
+    hourM(item);
+    //message(item);
+    //alertHours(item);
+
     return (
       { orderByDistance },
       (
@@ -107,11 +174,12 @@ export default function Restaurants({ navigation, route }) {
           >
             <Image
               progressiveRenderingEnabled={true}
-              style={{ width: 55, height: 55 }}
+              style={{ width: 65, height: 65 }}
               source={imageIcon}
             />
           </View>
           <View>
+            <Text>{hourMsg}</Text>
             <Text
               onPress={() => Linking.openURL(item.info_url)}
               style={{ fontSize: 15, fontWeight: "bold" }}
@@ -128,18 +196,29 @@ export default function Restaurants({ navigation, route }) {
               m
             </Text>
             <Text>{openingHours}</Text>
+            <Icon
+              type="ionicon"
+              name="md-add-circle-outline"
+              size={20}
+              onPress={alertHours(item)}
+              style={{ flexDirection: "row", justifyContent: "flex-start" }}
+            />
           </View>
         </View>
       )
     );
   };
-
+  //
+  //
+  //onPress={alertHours(item)}
+  // onPress={() => Alert.alert('Simple Button pressed')}
   return (
     <View style={{ flex: 1 }}>
       <FlatList
         data={listItems}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => renderItem(item)}
+        ListEmptyComponent={EmptyListMessage}
       ></FlatList>
     </View>
   );
