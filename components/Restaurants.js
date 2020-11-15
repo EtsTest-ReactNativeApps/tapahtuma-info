@@ -39,11 +39,12 @@ export default function Restaurants({ navigation, route }) {
 
   async function fetchData() {
     fetch(
-      "http://open-api.myhelsinki.fi/v1/places/?tags_search=Restaurant&distance_filter=" +
+      "http://open-api.myhelsinki.fi/v1/places/?tags_search=Restaurant&limit=20&distance_filter=" +
       distanceFilter
     )
       .then((response) => response.json())
       .then((responseData) => {
+
         setListItems(responseData.data);
       })
       .catch((error) => {
