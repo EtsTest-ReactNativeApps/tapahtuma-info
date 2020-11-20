@@ -8,7 +8,9 @@ import {
 export default function highlights() {
 
     const [highlightList, setHighlightList] = React.useState([])
-    let randomEvent = highlightList(randomInt)
+    const randomInt = require('random-int')
+    const random = randomInt(100)
+    let randomEvent = highlightList[random]
 
     function fetchData() {
         fetch("https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=0&endIndex=100", {
