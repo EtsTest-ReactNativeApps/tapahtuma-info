@@ -1,6 +1,7 @@
 import React from "react";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Search from "./Search";
+import HighlightEvent from "./Highlights"
 import moment from "moment";
 import 'moment-timezone';
 import {useEffect} from "react";
@@ -254,6 +255,7 @@ export default function Homepage({navigation}) {
                     />
                 </View>
             </View>
+            <HighlightEvent></HighlightEvent>
         </View>
     );
 }
