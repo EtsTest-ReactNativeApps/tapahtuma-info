@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component } from "react";
-import { getDistance, orderByDistance } from "geolib";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { getDistance } from "geolib";
 import { Icon } from "react-native-elements";
 
 import {
@@ -9,11 +8,7 @@ import {
   Text,
   View,
   Image,
-  Button,
-  TextInput,
-  FlatList,
   Alert,
-  ScrollView,
   Linking,
   Modal,
   TouchableHighlight,
@@ -143,6 +138,7 @@ export default function RestaurantCard(props) {
             />
           </Text>
         </View>
+        <StatusBar style="auto" />
       </View>
     )
   );
@@ -155,7 +151,6 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     flexDirection: "row",
     borderWidth: 1,
-    //padding: 5,
     alignItems: "center",
   },
   modalView: {
