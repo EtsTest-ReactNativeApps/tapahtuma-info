@@ -6,19 +6,33 @@ import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function EventMapScreen({ navigation, route }) {
-  const { location } = route.params;
+  const { eventCoordsMap } = route.params;
+  const { listItems } = route.params;
 
-  const [region, setRegion] = useState({
-    latitude: 60.169587,
-    longitude: 24.938201,
-    latitudeDelta: 0.5,
-    longitudeDelta: 0.5,
-  });
+  const [region, setRegion] = useState(
+    {
+      latitude: 60.169587,
+      longitude: 24.938201,
+      latitudeDelta: 0.5,
+      longitudeDelta: 0.5,
+    },
+    []
+  );
 
+  let fetchRestaurant = [];
+  for (let i = 0; i < listItems.length; i++) {
+    fetchRestaurant.push(
+      "&location=" + listItems[i].location.lat + "," + listItems[i].location.lon
+    );
+  }
+  console.log(fetchRestaurant);
+  //Ei toimi vielä oikein
   const fetchCoordinates = () => {
     fetch(
-      "http://www.mapquestapi.com/geocoding/v1/address?key=8oxL5Ltp3U33rpNEe7Rqbc47hfQDafLT&location=" +
-        location
+      "https://www.mapquestapi.com/geocoding/v1/batch?&inFormat=kvp&outFormat=json&thumbMaps=false&maxResults=1&location=" +
+        eventCoordsMap +
+        fetchRestaurant +
+        "&key=8oxL5Ltp3U33rpNEe7Rqbc47hfQDafLT"
     )
       .then((res) => res.json())
       .then((data) =>
@@ -31,9 +45,14 @@ export default function EventMapScreen({ navigation, route }) {
       );
   };
 
+  /**
+
+          {markers.map((marker, index) => (
+          <Marker key={index} coordinate={marker.latlng} title={marker.title} />
+        ))}
+        />*/
   return (
     <View style={styles.EventMapContainer}>
-      <Text style={styles.AddressText}>{location}</Text>
       <MapView
         onMapReady={fetchCoordinates}
         style={{ flex: 6 }}
@@ -55,12 +74,5 @@ export default function EventMapScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   EventMapContainer: {
     flex: 1,
-    marginTop: 30,
-  },
-  AddressText: {
-    fontSize: 15,
-    fontWeight: "bold",
-    textAlign: "right",
-    padding: 10,
   },
 });

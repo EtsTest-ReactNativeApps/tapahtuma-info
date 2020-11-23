@@ -6,6 +6,7 @@ import Homepage from "./Homepage";
 import Eventlist from "./Eventlist";
 import EventMapScreen from "./EventMapScreen";
 import Restaurants from "./Restaurants";
+import RestaurantMap from "./RestausrantMap";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,11 @@ const MainStackNavigator = () => {
         name="EventMapScreen"
         options={{ title: "Takaisin" }}
         component={EventMapScreen}
+      />
+      <Stack.Screen
+        name="RestaurantMap"
+        options={{ title: "Takaisin" }}
+        component={RestaurantMap}
       />
     </Stack.Navigator>
   );
