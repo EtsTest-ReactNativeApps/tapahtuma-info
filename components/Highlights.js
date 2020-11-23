@@ -6,12 +6,21 @@ import {
     Alert
 } from "react-native";
 
-export default function highlights() {
+export default function Highlights() {
 
     const [highlightList, setHighlightList] = React.useState([])
     const randomInt = require('random-int')
     const random = randomInt(100)
-    const randomEvent = highlightList[random]
+    const [randomEvent, setRandomEvent] = React.useState()
+    // let image;
+    // if (randomEvent.description.images[0].length > 0 ) {
+    //   image = { uri: randomEvent.description.images[0].url };
+    // } else {
+    //   image = {
+    //     uri:
+    //       "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
+    //   };
+    // }
 
     function fetchData() {
         fetch("https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=0&endIndex=100", {
@@ -20,6 +29,9 @@ export default function highlights() {
         .then((response) => response.json())
         .then((responseData) => {
         setHighlightList(responseData)
+        setRandomEvent(highlightList[random])
+        console.log(randomEvent)
+        console.log(random)
         })
         .catch((error) => {
         Alert.alert('Error', error.message)
@@ -30,7 +42,7 @@ export default function highlights() {
         fetchData();
     },[]);
 
-    console.log(randomEvent.description.intro)
+    //console.log(randomEvent.description.intro)
 
 // RANDOMEVENT.DESCRIPTION EI TOIMI. HERJAA UNDEFINEDIA. LISÄKSI ALUSSA 
 // RANDOMINT GENERAATTORI HAKEE NOIN NELJÄ RANDOMINTIÄ JOKA ON VÄHÄN OUTOA.
@@ -43,7 +55,7 @@ export default function highlights() {
         <Card.Divider/>
         <Card.Image 
             style={{ width: 51, height: 51 }}
-            source={{ uri: randomEvent.description.images[0].url }} 
+            source={ image } 
         />
         <Text style={{marginBottom: 10}}>
             {randomEvent.description.intro}
