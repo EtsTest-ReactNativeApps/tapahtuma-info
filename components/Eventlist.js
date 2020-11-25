@@ -1,85 +1,94 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-//import ReactTable from "react-table-v6";
+import Event from "./Event";
+import EventScreen from "./EventScreen";
 
 import {
   StyleSheet,
-  Text,
   View,
-  Button,
-  TextInput,
   FlatList,
   Alert,
-  ScrollView,
-  Linking,
+  ActivityIndicator,
 } from "react-native";
 
-export default function Eventlist() {
+import Search from "./Search";
+import { useLinkProps } from "@react-navigation/native";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+const EventlistStack = createStackNavigator();
+
+export default function Eventlist(props) {
   const [listItems, setListItems] = React.useState([]);
-  const [text, setText] = React.useState("");
-
-  /*
-
-  function fetchData(){
-    fetch("http://open-api.myhelsinki.fi/v1/events/", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-    .then(responseData => responseData)
-    .then(responseData => console.log(responseData))
-  }
-
-*/
+  const [listItemsKeep, setListItemsKeep] = React.useState([]);
+  const [isReady, setReady] = React.useState(false);
 
   function fetchData() {
+    let startIndex = 0; //fetcataan 100 eventtiä
+    let endIndex = 100;
+
     fetch(
-      "https://cors-anywhere.herokuapp.com/open-api.myhelsinki.fi/v1/activities/",
+      "https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=" +
+        startIndex +
+        "&endIndex=" +
+        endIndex,
       {
         method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Origin: "x-requested-with",
-        },
       }
     )
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData.data[0]);
-        setListItems(responseData.data);
+        setListItems(responseData);
+        setListItemsKeep(responseData);
+        setReady(true);
       })
       .catch((error) => {
         Alert.alert("Error", error);
       });
   }
 
+  function callBackFunction(newData) {
+    setListItems(newData);
+  }
+
   React.useEffect(() => {
     fetchData();
   }, []);
 
+  const renderItem = (item) => {
+    return <Event item={item} />;
+  };
+
+  if (!isReady) {
+    return (
+      <View style={styles.EventListContainer}>
+        <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
+        <ActivityIndicator style={styles.ActivityIndicator} size="large" />
+      </View>
+    );
+  }
+
   return (
-    <ScrollView style={styles.HistoryContainer}>
-      {listItems.map((item) => (
-        <Text
-          onPress={() => Linking.openURL(item.info_url)}
-          style={{ fontSize: 20 }}
-          key={item.id}
-        >
-          {item.name.fi}
-        </Text>
-      ))}
-    </ScrollView>
+    <View style={styles.EventListContainer}>
+      <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
+      <FlatList
+        style={{ marginLeft: 10 }}
+        data={listItems}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => renderItem(item)}
+      ></FlatList>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  HistoryContainer: {
-    marginHorizontal: 20,
-    fontSize: 5,
-    marginTop: 50,
-    flexDirection: "column",
+  EventListContainer: {
+    flex: 1,
+    marginTop: 30,
+  },
+  ActivityIndicator: {
+    flex: 1,
   },
 });

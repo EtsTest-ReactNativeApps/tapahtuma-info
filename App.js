@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-/* import ReactTable from "react-table-v6"; */
+import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+
 import {
   StyleSheet,
   Text,
@@ -15,18 +17,14 @@ import {
   Linking,
 } from "react-native";
 
-import Eventlist from "./components/eventlist";
-import Restaurants from "./components/Restaurants";
+import { MainStackNavigator } from "./components/MainStackNavigator";
+import BottomTabNavigator from "./components/BottomTabNavigator";
 
-const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Tapahtumat" component={Eventlist} />
-        <Tab.Screen name="Ravintolat" component={Restaurants} />
-      </Tab.Navigator>
+      <BottomTabNavigator/>
     </NavigationContainer>
   );
 }
