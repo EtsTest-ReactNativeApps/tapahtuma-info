@@ -1,33 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-//import ReactTable from "react-table-v6";
 import { useNavigation } from "@react-navigation/native";
-import { getDistance, orderByDistance } from "geolib";
-import { Ionicons } from "@expo/vector-icons";
-import { Icon } from "react-native-elements";
-
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TextInput,
-  FlatList,
-  Alert,
-  ScrollView,
-  Linking,
-  Modal,
-  TouchableHighlight,
-} from "react-native";
+import { StyleSheet, Text, View, Button, FlatList, Alert } from "react-native";
 import RestaurantCard from "./RestaurantCard";
 
 export default function Restaurants({ navigation, route }) {
   const { propsItem } = route.params;
 
   const [listItems, setListItems] = React.useState([]);
-  const [ravintolaLista, setRavintolaLista] = React.useState([]);
-  const [text, setText] = React.useState("");
 
   const distanceFilter =
     propsItem.item.location.lat + "," + propsItem.item.location.lon + "," + 2;
@@ -53,9 +33,6 @@ export default function Restaurants({ navigation, route }) {
         Alert.alert("Error", error);
       });
   }
-
-  //OSAA LASKEA ETÄISYYDEN VERTAILUKOHDAKSI TÄYTYY VIELÄ MUUTTAA RAVINTOLA
-  //JA FILTERÖIDÄ ETÄISYYDEN MUKAAN 10 LÄHINTÄ
 
   React.useEffect(() => {
     fetchData();
@@ -100,28 +77,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     flexDirection: "row",
     borderWidth: 1,
-    //padding: 5,
     alignItems: "center",
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    backgroundColor: "#FFFFFF",
   },
 });

@@ -19,8 +19,6 @@ export default function RestaurantCard(props) {
   let item = props.item;
   let eventCoords = props.eventCoords;
 
-  React.useEffect(() => {}, []);
-
   const orderByDistance = () => {
     orderByDistance(eventCoords, {
       latitude: item.location.lat,
@@ -39,7 +37,6 @@ export default function RestaurantCard(props) {
   }
 
   let day = new Date().getDay();
-  console.log(day + " päivä");
   let dayArr;
   if (day === 0) {
     dayArr = 6;
@@ -48,7 +45,6 @@ export default function RestaurantCard(props) {
   }
 
   let openingHours;
-
   if (item.opening_hours.hours[dayArr].opens === null) {
     openingHours = "Suljettu";
   } else {
@@ -77,7 +73,6 @@ export default function RestaurantCard(props) {
   }
 
   const alertHours = (item) => {
-    console.log(item);
     setModalVisible(true);
   };
 
@@ -93,9 +88,9 @@ export default function RestaurantCard(props) {
             Alert.alert("Ikkuna suljettu.");
           }}
         >
-          <View style={styles.centeredView}>
+          <View /*style={styles.centeredView}*/>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>{hourMsg}</Text>
+              <Text /*style={styles.modalText}*/>{hourMsg}</Text>
 
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
@@ -152,6 +147,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderWidth: 1,
     alignItems: "center",
+    backgroundColor: "#FFFFFF",
   },
   modalView: {
     margin: 20,

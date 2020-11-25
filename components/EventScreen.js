@@ -126,6 +126,7 @@ export default function EventScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   EventListContainer: {
     flex: 1,
+    backgroundColor: "#FFFFFF",
   },
   ActivityIndicator: {
     flex: 1,
