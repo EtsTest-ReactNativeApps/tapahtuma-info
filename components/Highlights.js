@@ -43,7 +43,7 @@ export default function Highlights() {
     useEffect(() => {
         console.log(randomEvent,"randomevent")
         if (randomEvent !== undefined) {
-            if (randomEvent.description.images[0].length > 0) {
+            if (randomEvent.description.images.length > 0) {
                 image = { uri: randomEvent.description.images[0].url };
             } else {
                 image = {
@@ -70,7 +70,6 @@ export default function Highlights() {
                 </Card.Title>
                 <Card.Divider/>
                 <Card.Image 
-                    style={{ width: 51, height: 51 }}
                     source={ image } 
                 />
                 <Text style={{marginBottom: 10}}>
