@@ -3,7 +3,9 @@ import { Card, Text, Icon } from 'react-native-elements'
 import {
     View,
     Alert,
-    Button
+    Button,
+    ToastAndroid,
+    Linking
 } from "react-native";
 
 export default function Highlights() {
@@ -40,25 +42,39 @@ export default function Highlights() {
 
     }, [highlightList]);
 
-    useEffect(() => {
-        console.log(randomEvent,"randomevent")
-        if (randomEvent !== undefined) {
-            if (randomEvent.description.images.length > 0) {
-                image = { uri: randomEvent.description.images[0].url };
-            } else {
-                image = {
-                    uri:
-                        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
-                };
-            }
-            console.log(image, "image")
+    if (randomEvent !== undefined) {
+        if (randomEvent.description.images.length > 0) {
+            image = { uri: randomEvent.description.images[0].url };
+          //  image = '{{uri: "'+randomEvent.description.images[0].url+'"}}' ;
+        } else {
+            image = {
+                uri:
+                    "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
+            };
         }
-    }, [randomEvent]);
+    }
+
+    const isLinkAvailable = () => {
+        if (randomEvent.info_url !== null) {
+          Linking.openURL(randomEvent.info_url);
+        } else {
+          ToastAndroid.showWithGravity(
+            "Linkkiä ei valitettavasti ole saatavilla",
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER
+          );
+        }
+      };
+
+    // useEffect(() => {
+    //     console.log(randomEvent,"randomevent")
+    
+    //         console.log(image, "image")
+    //     }
+    // }, [randomEvent]);
 
     //console.log(randomEvent.description.intro)
 
-    // RANDOMEVENT.DESCRIPTION EI TOIMI. HERJAA UNDEFINEDIA. LISÄKSI ALUSSA 
-    // RANDOMINT GENERAATTORI HAKEE NOIN NELJÄ RANDOMINTIÄ JOKA ON VÄHÄN OUTOA.
     if(randomEvent === undefined || highlightList === undefined){
         return <Text>Loading...</Text>
     }else {
@@ -70,7 +86,7 @@ export default function Highlights() {
                 </Card.Title>
                 <Card.Divider/>
                 <Card.Image 
-                    source={ image } 
+                    source= {image}
                 />
                 <Text style={{marginBottom: 10}}>
                     {randomEvent.description.intro}
@@ -78,7 +94,8 @@ export default function Highlights() {
                 <Button
                     icon={<Icon name='code' color='#ffffff' />}
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                    title='VIEW NOW' 
+                    title='KATSO' 
+                    onPress={() => isLinkAvailable()}
                 />
             </Card>
         )
