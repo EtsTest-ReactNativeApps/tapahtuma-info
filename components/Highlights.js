@@ -5,15 +5,16 @@ import {
     Alert,
     Button
 } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 export default function Highlights() {
 
     const [highlightList, setHighlightList] = React.useState()
-    const randomInt = require('random-int')
-    const random = randomInt(100)
     const [randomEvent, setRandomEvent] = React.useState()
     let image;
-
+    const navigation = useNavigation();
+    const randomInt = require('random-int')
+    const random = randomInt(100)
 
     function fetchData() {
         fetch("https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=0&endIndex=100")
@@ -31,8 +32,8 @@ export default function Highlights() {
     }, []);
 
     useEffect(() => {
-        console.log("highlightList updated")
-        console.log(highlightList, "highlightLIST")
+    //    console.log("highlightList updated")
+    //    console.log(highlightList, "highlightLIST")
         let lista = highlightList
         if (lista !== undefined) {
             setRandomEvent(lista[random])
@@ -43,22 +44,23 @@ export default function Highlights() {
     useEffect(() => {
         console.log(randomEvent,"randomevent")
         if (randomEvent !== undefined) {
-            if (randomEvent.description.images[0].length > 0) {
-                image = { uri: randomEvent.description.images[0].url };
+            if (randomEvent.description.images.length > 0) {
+               // image = { uri: randomEvent.description.images[0].url };
+                image = 'uri: "'+randomEvent.description.images[0].url+'"' ;
+               // image = randomEvent.description.images[0].url ;
             } else {
                 image = {
                     uri:
-                        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg",
-                };
+                        "http://kasperstromman.com/wp-content/uploads/2017/05/HelsinkiIlme.jpg"
+            };
             }
             console.log(image, "image")
         }
     }, [randomEvent]);
 
     //console.log(randomEvent.description.intro)
+    // 
 
-    // RANDOMEVENT.DESCRIPTION EI TOIMI. HERJAA UNDEFINEDIA. LISÄKSI ALUSSA 
-    // RANDOMINT GENERAATTORI HAKEE NOIN NELJÄ RANDOMINTIÄ JOKA ON VÄHÄN OUTOA.
     if(randomEvent === undefined || highlightList === undefined){
         return <Text>Loading...</Text>
     }else {
@@ -70,8 +72,7 @@ export default function Highlights() {
                 </Card.Title>
                 <Card.Divider/>
                 <Card.Image 
-                    style={{ width: 51, height: 51 }}
-                    source={ image } 
+                    source= {image} 
                 />
                 <Text style={{marginBottom: 10}}>
                     {randomEvent.description.intro}
@@ -79,7 +80,8 @@ export default function Highlights() {
                 <Button
                     icon={<Icon name='code' color='#ffffff' />}
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                    title='VIEW NOW' 
+                    title='KATSO'
+                    onPress={() => navigation.navigate("EventScreen",{propsItem: highlightList })}
                 />
             </Card>
         )
