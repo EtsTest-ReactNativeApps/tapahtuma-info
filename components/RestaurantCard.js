@@ -14,6 +14,10 @@ import {
   TouchableHighlight,
 } from "react-native";
 
+//nämä täytyy exportata testausta varten, jos testaa yksittäistä komponenttia
+export let day = new Date().getDay();
+export let dayArr;
+
 export default function RestaurantCard(props) {
   const [modalVisible, setModalVisible] = React.useState(false);
   let item = props.item;
@@ -98,7 +102,7 @@ export default function RestaurantCard(props) {
                   setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>Sulje</Text>
+                <Text /*style={styles.textStyle}*/>Sulje</Text>
               </TouchableHighlight>
             </View>
           </View>

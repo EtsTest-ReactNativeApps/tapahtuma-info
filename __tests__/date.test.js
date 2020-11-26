@@ -1,42 +1,39 @@
 import React from "react";
-//import { dayArr } from "../components/RestaurantCard";
+import { day } from "../components/RestaurantCard";
 
 describe("day componentin testaus", () => {
-  let day = new Date().getDay();
-
-  it("pitäisi antaa jonkin tulos", () => {
+  test("pitäisi antaa jonkin tulos", () => {
     expect(day).not.toBeNull();
   });
 
-  it("day on määritelty", () => {
+  test("day on määritelty", () => {
     expect(day).toBeDefined();
   });
 
-  it("day pituus 7", () => {
-    expect("day").toHaveLength(7);
+  test("pitäisi palauttaa numero 0-6 väliltä", () => {
+    expect.extend({
+      toBeWithinRange(received, floor, ceiling) {
+        const pass = received >= floor && received <= ceiling;
+        if (pass) {
+          return {
+            message: () =>
+              `expected ${received} not to be within range ${floor} - ${ceiling}`,
+            pass: true,
+          };
+        } else {
+          return {
+            message: () => `expected ${floor} - ${ceiling}`,
+            pass: false,
+          };
+        }
+      },
+    });
+  });
+  test("antaa numeroarvot 0-6 väliltä", () => {
+    expect(day).toBeWithinRange(0, 6);
   });
 });
 
-/*Ei toimi
-test("pitäisi palauttaa numero 0-6 väliltä", () => {
-  expect.extend({
-    toBeWithinRange(received, floor, ceiling) {
-      if (pass) {
-        return {
-          pass: true,
-        };
-      } else {
-        return {
-          pass: false,
-        };
-      }
-    },
-  });
-});
-test("antaa numeroarvot 0-6 väliltä", () => {
-  expect(2).toBeWithinRange(0, 6);
-});
-*/
 // Describe-funktio on tapa niputtaa testejä yhteen.
 // Ei ole välttämätön
 //describe('math', () => {

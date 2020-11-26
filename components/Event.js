@@ -1,14 +1,11 @@
 import React from "react";
-
 import { StyleSheet, Text, View, Image } from "react-native";
 import moment from "moment";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
+//import { useNavigation } from "@react-navigation/native";
 
 export default function Event(props) {
   let propsItem = props;
-
-  const navigation = useNavigation();
 
   let image;
   if (props.item.description.images[0]) {
@@ -34,9 +31,7 @@ export default function Event(props) {
   return (
     <View style={styles.EventContainer}>
       <View style={{ marginRight: 10, alignItem: "center" }}>
-        <TouchableHighlight
-          onPress={() => navigation.navigate("EventScreen", { propsItem })}
-        >
+        <TouchableHighlight onPress={() => props.navigate(propsItem)}>
           <Image
             progressiveRenderingEnabled={true}
             style={{ width: 55, height: 55 }}
@@ -46,7 +41,7 @@ export default function Event(props) {
       </View>
       <View>
         <Text
-          onPress={() => navigation.navigate("EventScreen", { propsItem })}
+          onPress={() => props.navigate(propsItem)}
           style={{ fontWeight: "bold", maxWidth: 250 }}
         >
           {title}
