@@ -17,19 +17,29 @@ import {
 //nämä täytyy exportata testausta varten, jos testaa yksittäistä komponenttia
 export let day = new Date().getDay();
 export let dayArr;
+export const weekdays = [
+  "ma ",
+  "ti    ",
+  "ke  ",
+  "to   ",
+  "pe  ",
+  "la   ",
+  "su  ",
+];
+export let hourMsg = [];
 
 export default function RestaurantCard(props) {
   const [modalVisible, setModalVisible] = React.useState(false);
   let item = props.item;
   let eventCoords = props.eventCoords;
-
+  /*
   const orderByDistance = () => {
     orderByDistance(eventCoords, {
       latitude: item.location.lat,
       longitude: item.location.lon,
     });
   };
-
+*/
   let imageIcon;
   if (item.description.images.length > 0) {
     imageIcon = { uri: item.description.images[0].url };
@@ -81,65 +91,61 @@ export default function RestaurantCard(props) {
   };
 
   return (
-    { orderByDistance },
-    (
-      <View style={styles.listItem}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Ikkuna suljettu.");
-          }}
-        >
-          <View /*style={styles.centeredView}*/>
-            <View style={styles.modalView}>
-              <Text /*style={styles.modalText}*/>{hourMsg}</Text>
+    // { orderByDistance },
+    <View style={styles.listItem}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Ikkuna suljettu.");
+        }}
+      >
+        <View style={styles.modalView}>
+          <Text>{hourMsg}</Text>
 
-              <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Text /*style={styles.textStyle}*/>Sulje</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
-        <View style={{ marginRight: 10, marginLeft: 10, alignItem: "center" }}>
-          <Image style={{ width: 65, height: 65 }} source={imageIcon} />
-        </View>
-        <View>
-          <Text
-            onPress={() => Linking.openURL(item.info_url)}
-            style={{ fontSize: 16, fontWeight: "bold" }}
+          <TouchableHighlight
+            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+            onPress={() => {
+              setModalVisible(!modalVisible);
+            }}
           >
-            {item.name.fi}
-          </Text>
-          <Text>{item.location.address.street_address}</Text>
-          <Text>
-            Etäisyys:{" "}
-            {getDistance(eventCoords, {
-              latitude: item.location.lat,
-              longitude: item.location.lon,
-            })}{" "}
-            m
-          </Text>
-          <Text>
-            {openingHours}
-            {"      "}
-            <Icon
-              type="ionicon"
-              name="md-add-circle-outline"
-              size={16}
-              onPress={(item) => alertHours(item)}
-            />
-          </Text>
+            <Text>Sulje</Text>
+          </TouchableHighlight>
         </View>
-        <StatusBar style="auto" />
+      </Modal>
+      <View style={{ marginRight: 10, marginLeft: 10, alignItem: "center" }}>
+        <Image style={{ width: 65, height: 65 }} source={imageIcon} />
       </View>
-    )
+      <View>
+        <Text
+          onPress={() => Linking.openURL(item.info_url)}
+          style={{ fontSize: 16, fontWeight: "bold" }}
+        >
+          {item.name.fi}
+        </Text>
+        <Text>{item.location.address.street_address}</Text>
+        <Text>
+          Etäisyys:{" "}
+          {getDistance(eventCoords, {
+            latitude: item.location.lat,
+            longitude: item.location.lon,
+          })}{" "}
+          m
+        </Text>
+        <Text>
+          {openingHours}
+          {"      "}
+          <Icon
+            type="ionicon"
+            name="md-add-circle-outline"
+            size={16}
+            onPress={(item) => alertHours(item)}
+          />
+        </Text>
+      </View>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 

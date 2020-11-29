@@ -1,4 +1,3 @@
-import React from "react";
 import { day } from "../components/RestaurantCard";
 
 describe("day componentin testaus", () => {
@@ -49,3 +48,35 @@ describe("day componentin testaus", () => {
 // test('subtraction', () => {
 //  expect(5 - 2).toEqual(3);
 //});
+
+/**
+TÄMÄ OLI TESTIYRITYS EVENT.JS:LLE, MUTTA NAVIGOITI PITÄISI SIIRTÄÄ OMAKSI KOMPONENTIKSEEN
+JA PROPSIN VÄLITYS PITÄISI SAADA TOIMIMAAN OIKEIN
+import React from "react";
+import Event from "../components/Event";
+import renderer from "react-test-renderer";
+
+// Ei mene läpi, tulee error: Unable to find node on an unmounted component.
+
+describe("Event componentin testausta", () => {
+  test("Eventin propsien testaus", () => {
+    const tree = renderer
+      .create(
+        <Event
+          item={{
+            description: { images: ["url"] },
+            name: {
+              fi: "Den Besynnerliga Händelsen Med Hunden Om Natten",
+              en: null,
+              sv: null,
+              zh: null,
+            },
+            location: { address: { street_address: "Yrjönkatu 30" } },
+            event_dates: { starting_day: "2021-03-02" },
+          }}
+        />
+      )
+      .toJSON();
+    console.log(JSON.stringify(tree));
+  });
+}); */
