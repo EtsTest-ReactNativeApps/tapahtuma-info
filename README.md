@@ -28,10 +28,10 @@
 <br />
 <p align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">project_title</h3>
+  <h3 align="center">Helsinki API Event mobile app</h3>
 
   <p align="center">
     project_description
