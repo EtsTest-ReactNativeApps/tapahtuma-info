@@ -104,10 +104,12 @@ Here's a blank template to get started:
 To use the application you need to have installed the following:
 
 - yarn
-```bash npm install -g yarn
+```bash 
+npm install -g yarn
 ```
 - expo CLI
-```bash yarn global add expo-cli
+```bash 
+yarn global add expo-cli
 ```
 - expo mobile app in your mobile device OR emulator
   See detailed Expo documentation from [https://expo.io/](https://expo.io/)
