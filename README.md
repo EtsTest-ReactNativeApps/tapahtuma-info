@@ -82,9 +82,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4)
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`Team-RyTy`, `tapahtuma-info`, `Helsinki API mobile app`, `Helsinki API mobile app is a team project wich we did at Haaga-Helia's software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API mobile app is modern fullstack application that has been made for the users to use it on their mobile phones. With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where he/she can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where he/she can see the event and the restaurant on the map. `
+`Team-RyTy`, `tapahtuma-info`, `Helsinki API mobile app`, 
+
+Helsinki API mobile app is a team project wich we did at Haaga-Helia's software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API mobile app is modern fullstack application that has been made for the users to use it on their mobile phones. With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where he/she can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where he/she can see the event and the restaurant on the map. 
 
 
 ### Built With
