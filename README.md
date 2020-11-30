@@ -145,32 +145,6 @@ Back-end was made with Amazon Web Servises.
 ### AWS Diagram
 <img src="https://i.imgur.com/wxYOL6z.png" alt="Logo" width="500" height="500">
 
-### Step 2
-
-Open the mapfox_backend file on your code editor and start editing, the default port is `8000` and you can use the same endpoints that the one one serverside uses by simply just removing the ip address and replacing it with `localhost:8000`, for example `localhost:8000/events`.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
