@@ -27,11 +27,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4" alt="Logo" width="80" height="80">
+  <a href="https://github.com/Team-RyTy/tapahtuma-info">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Helsinki API Event mobile app</h3>
+  <h3 align="center">project_title</h3>
 
   <p align="center">
     project_description
@@ -99,13 +99,16 @@ Here's a blank template to get started:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Step 0
+### Prerequisites
 
-As prequisite to get the application up and running you need to
-have installed the following:
+To use the application you need to have installed the following:
 
-- npm
+- yarn
+```npm install -g yarn
+```
 - expo CLI
+```yarn global add expo-cli
+```
 - expo mobile app in your mobile device OR emulator
   See detailed Expo documentation from [https://expo.io/](https://expo.io/)
 
@@ -114,26 +117,25 @@ have installed the following:
 Clone or download this project
 
 ```bash
-git clone https://github.com/mjHarakka/mapfox
+git clone https://github.com/Team-RyTy/tapahtuma-info.git
 ```
 
-navigate to MapFox directory:
+navigate to app's directory:
 
 ```bash
-cd /path_to/mapfox
+cd /path_to/tapahtuma.info
 ```
 
 run
 
 ```bash
-npm install
+yarn install
 expo start
 ```
 
 ### Step 2
 
-Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator, hot reload works for the front-end, so the changes can be seen changing in real time. Your frontend should be now all set.
-
+Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator.
 
 ## Getting Started with the Backend
 
