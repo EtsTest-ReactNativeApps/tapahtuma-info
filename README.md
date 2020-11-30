@@ -34,46 +34,10 @@
   <h3 align="center">Helsinki API Event mobile app</h3>
 
   <p align="center">
-    project_description
+    React Native Mobile App to explore events provided by Helsinki API
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </p>
-
-
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
 
 
 
@@ -82,14 +46,12 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4)
 
-`Team-RyTy`, `tapahtuma-info`, `Helsinki API mobile app` 
 
 Helsinki API mobile app is a team project which we did at Haaga-Helia's Software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API mobile app is modern fullstack application that has been made for the users to use it on their mobile phones. 
 
 With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where one can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where one can see the event and the restaurant on the map. 
 
 REST API provided by city of Helsinki is used in this project. http://open-api.myhelsinki.fi/ and we are also using mapquest API https://developer.mapquest.com/documentation/. 
-
 
 ### Built With
 
@@ -103,13 +65,18 @@ REST API provided by city of Helsinki is used in this project. http://open-api.m
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Step 0
+### Prerequisites
 
-As prequisite to get the application up and running you need to
-have installed the following:
+To use the application you need to have installed the following:
 
-- npm
+- yarn
+```bash 
+npm install -g yarn
+```
 - expo CLI
+```bash 
+yarn global add expo-cli
+```
 - expo mobile app in your mobile device OR emulator
   See detailed Expo documentation from [https://expo.io/](https://expo.io/)
 
@@ -118,72 +85,36 @@ have installed the following:
 Clone or download this project
 
 ```bash
-git clone https://github.com/mjHarakka/mapfox
+git clone https://github.com/Team-RyTy/tapahtuma-info.git
 ```
 
-navigate to MapFox directory:
+navigate to app's directory:
 
 ```bash
-cd /path_to/mapfox
+cd /path_to/tapahtuma.info
 ```
 
 run
 
 ```bash
-npm install
+yarn install
 expo start
 ```
 
 ### Step 2
 
-Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator, hot reload works for the front-end, so the changes can be seen changing in real time. Your frontend should be now all set.
+Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator.
 
 
 ## Getting Started with the Backend
+Back-end was made with Amazon Web Servises.
 
-Clone or download this project
+[Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/DataToS3.py) to pull data from Helsinki API to AWS S3 bucket
 
-```bash
-git clone https://github.com/mjHarakka/mapfox/
-```
+[Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/S3ToAPI.py) to pull data from S3 and give it as response
 
-navigate to MapFox directory:
-
-```bash
-cd mapfox_backend
-```
-run
-
-```bash
-npm install
-node index.js
-```
-(This might come handy in developing the backend https://www.npmjs.com/package/nodemon)
-
-### Step 2
-
-Open the mapfox_backend file on your code editor and start editing, the default port is `8000` and you can use the same endpoints that the one one serverside uses by simply just removing the ip address and replacing it with `localhost:8000`, for example `localhost:8000/events`.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-
+### AWS Diagram
+<img src="https://i.imgur.com/wxYOL6z.png" alt="Logo" width="500" height="500">
 
 <!-- USAGE EXAMPLES -->
 ## Usage
