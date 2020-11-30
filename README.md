@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4" alt="Logo" width="160" height="160">
+    <img src="https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Helsinki API Event mobile app</h3>
@@ -84,7 +84,7 @@
 
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+`Team-RyTy`, `tapahtuma-info`, `Helsinki API mobile app`, `Helsinki API mobile app is a team project wich we did at Haaga-Helia's software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API mobile app is modern fullstack application that has been made for the users to use it on their mobile phones. With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where he/she can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where he/she can see the event and the restaurant on the map. `
 
 
 ### Built With
@@ -136,15 +136,52 @@ Open app with your mobile device by reading the QR-code from expo CLI console or
 
 
 ## Getting Started with the Backend
-Back-end was made with Amazon Web Servises.
 
-[Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/DataToS3.py) to pull data from Helsinki API to AWS S3 bucket
+Clone or download this project
 
-[Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/S3ToAPI.py) to pull data from S3 and give it as response
+```bash
+git clone https://github.com/mjHarakka/mapfox/
+```
 
-### AWS Diagram
-<img src="https://i.imgur.com/wxYOL6z.png" alt="Logo" width="500" height="500">
+navigate to MapFox directory:
 
+```bash
+cd mapfox_backend
+```
+run
+
+```bash
+npm install
+node index.js
+```
+(This might come handy in developing the backend https://www.npmjs.com/package/nodemon)
+
+### Step 2
+
+Open the mapfox_backend file on your code editor and start editing, the default port is `8000` and you can use the same endpoints that the one one serverside uses by simply just removing the ip address and replacing it with `localhost:8000`, for example `localhost:8000/events`.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+
+
+<!-- USAGE EXAMPLES -->
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
