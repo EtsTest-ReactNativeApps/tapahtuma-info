@@ -27,11 +27,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/Team-RyTy/tapahtuma-info">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4" alt="Logo" width="160" height="160">
   </a>
 
-  <h3 align="center">project_title</h3>
+  <h3 align="center">Helsinki API Event mobile app</h3>
 
   <p align="center">
     project_description
@@ -99,18 +99,13 @@ Here's a blank template to get started:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Prerequisites
+### Step 0
 
-To use the application you need to have installed the following:
+As prequisite to get the application up and running you need to
+have installed the following:
 
-- yarn
-```bash 
-npm install -g yarn
-```
+- npm
 - expo CLI
-```bash 
-yarn global add expo-cli
-```
 - expo mobile app in your mobile device OR emulator
   See detailed Expo documentation from [https://expo.io/](https://expo.io/)
 
@@ -119,46 +114,36 @@ yarn global add expo-cli
 Clone or download this project
 
 ```bash
-git clone https://github.com/Team-RyTy/tapahtuma-info.git
-```
-
-navigate to app's directory:
-
-```bash
-cd /path_to/tapahtuma.info
-```
-
-run
-
-```bash
-yarn install
-expo start
-```
-
-### Step 2
-
-Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator.
-
-## Getting Started with the Backend
-
-Clone or download this project
-
-```bash
-git clone https://github.com/mjHarakka/mapfox/
+git clone https://github.com/mjHarakka/mapfox
 ```
 
 navigate to MapFox directory:
 
 ```bash
-cd mapfox_backend
+cd /path_to/mapfox
 ```
+
 run
 
 ```bash
 npm install
-node index.js
+expo start
 ```
-(This might come handy in developing the backend https://www.npmjs.com/package/nodemon)
+
+### Step 2
+
+Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator, hot reload works for the front-end, so the changes can be seen changing in real time. Your frontend should be now all set.
+
+
+## Getting Started with the Backend
+Back-end was made with Amazon Web Servises.
+
+[Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/DataToS3.py) to pull data from Helsinki API to AWS S3 bucket
+
+[Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/S3ToAPI.py) to pull data from S3 and give it as response
+
+### AWS Diagram
+<img src="https://i.imgur.com/wxYOL6z.png" alt="Logo" width="500" height="500">
 
 ### Step 2
 
