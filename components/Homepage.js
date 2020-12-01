@@ -202,7 +202,7 @@ export default function Homepage({navigation}) {
     return (
         <ScrollView style={styles.scrollView}>
         <View style={styles.HomepageContainer}>
-            <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
+            <Text style={styles.TitleContainer}> Löydä tapahtumat </Text>
             <Search 
                     keepLista={listItemsKeep} 
                     parentCallback={callBackFunction} />
@@ -212,7 +212,7 @@ export default function Homepage({navigation}) {
                     name= "search" 
                     onPress={() => navigation.navigate('Eventlist', {data: listItems})} />
                     </View>
-            <Text style={{marginLeft: 10}}>Päivämäärä</Text>
+            <Text style={styles.TextContainer}>Päivämäärä</Text>
             <View style={styles.Buttons}>
               <View style={{padding: 5}}>
                 <Button
@@ -242,7 +242,7 @@ export default function Homepage({navigation}) {
                     />
                 )}
             </View>
-            <Text style={{marginLeft: 10}}>Valitse luokan mukaan</Text>
+            <Text style={styles.TextContainer}>Valitse luokan mukaan</Text>
             <View style={styles.Buttons}>
                 <View style={{padding: 5}}>
                     <Button
@@ -283,13 +283,15 @@ const styles = StyleSheet.create({
     ActivityIndicator: {
         flex: 1,
     },
-    TextContainer: {
+    TitleContainer: {
         fontSize: 30,
         fontWeight: "bold",
         marginBottom: 20,
         marginLeft: 10,
-        justifyContent: 'center', 
-                                alignItems: 'center'
+    },
+    TextContainer:{
+        fontWeight: "bold",
+        marginLeft: 10
     },
     Buttons: {
         flexDirection: "row",
