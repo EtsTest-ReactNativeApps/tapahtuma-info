@@ -39,8 +39,6 @@ export default function Homepage({navigation}) {
 
         let selectedMorning = moment(pickedDate).startOf('day').toISOString()
         let selectedNight = moment(pickedDate).endOf('day').toISOString()
-        console.log(selectedNight)
-        console.log(selectedMorning)
 
         let eventsSelectedDay = listItems.filter(event => event.event_dates.starting_day >= selectedMorning).filter(event =>
             event.event_dates.starting_day <= selectedNight)
@@ -76,9 +74,6 @@ export default function Homepage({navigation}) {
         let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => 
             event.event_dates.starting_day <= tomorrowNight)
 
-        console.log(tomorrowMorning)
-        console.log(tomorrowNight)
-
         navigation.navigate("Eventlist", {data: eventsTomorrow})
 
     }
@@ -102,7 +97,6 @@ export default function Homepage({navigation}) {
                 const events = musicEvents.filter(function (a) {
                     return a.event_dates.starting_day >= today;
                 });
-                console.log(musicEvents)
                 navigation.navigate("Eventlist", {data: events})
             })   
     }

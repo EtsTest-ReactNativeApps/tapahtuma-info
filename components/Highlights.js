@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Card, Text, Icon } from 'react-native-elements'
 import {
-    View,
     Alert,
     Button,
     ToastAndroid,
@@ -22,7 +21,6 @@ export default function Highlights() {
             .then((response) => response.json())
             .then(responseData => {
                 setHighlightList(responseData)
-                console.log(responseData)
             })
             .catch((error) => {
                 Alert.alert('Error', error.message)
@@ -33,8 +31,6 @@ export default function Highlights() {
     }, []);
 
     useEffect(() => {
-        console.log("highlightList updated")
-        console.log(highlightList, "highlightLIST")
         let lista = highlightList
         if (lista !== undefined) {
             setRandomEvent(lista[random])
@@ -45,7 +41,6 @@ export default function Highlights() {
     if (randomEvent !== undefined) {
         if (randomEvent.description.images.length > 0) {
             image = { uri: randomEvent.description.images[0].url };
-          //  image = '{{uri: "'+randomEvent.description.images[0].url+'"}}' ;
         } else {
             image = {
                 uri:
@@ -66,22 +61,10 @@ export default function Highlights() {
         }
       };
 
-     
-
-    // useEffect(() => {
-    //     console.log(randomEvent,"randomevent")
-    
-    //         console.log(image, "image")
-    //     }
-    // }, [randomEvent]);
-
-    //console.log(randomEvent.description.intro)
-
     if(randomEvent === undefined || highlightList === undefined){
         return <Text>Loading...</Text>
     }else {
         return (
-            // <Text>??????...</Text>
             <Card>
                 <Card.Title>
                     {randomEvent.name.fi}
