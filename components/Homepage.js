@@ -212,16 +212,18 @@ export default function Homepage({navigation}) {
                 <Button
                     title="Tänään"
                     onPress={_ => getEventsToday()}
+                    color="black"
                 />
               </View>
               <View style={{padding: 5}}>
                 <Button
                     title="Huomenna"
                     onPress={_ => getEventsTomorrow()}
+                    color="black"
                 />
               </View>
               <View style={{padding: 5}}>
-                <Button onPress={showDatepicker} title="Valitse pvm"/>
+                <Button onPress={showDatepicker} title="Valitse pvm" color="black"/>
                 </View>
                 {show && (
                     <DateTimePicker
@@ -240,18 +242,21 @@ export default function Homepage({navigation}) {
                     <Button
                         title="Musiikki"
                         onPress={_ => getMusicEvents()}
+                        color="black"
                     />
                 </View>
                 <View style={{padding: 5}}>
                     <Button
                         title="Kulttuuritapahtumat"
                         onPress={_ => getCultureEvents()}
+                        color="black"
                     />
                 </View>
                 <View style={{padding: 5}}>
                     <Button
                         title="Festivaalit"
                         onPress={_ => getFestivalEvents()}
+                        color="black"
                     />
                 </View>
             </View>
