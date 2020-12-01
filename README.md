@@ -126,7 +126,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where one can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where one can see the event and the restaurant on the map.
 
 ## Homepage
-<img src="https://imgur.com/a/JTsV9de" alt="Logo" width="500" height="500">
+<img src="https://imgur.com/a/JTsV9de" alt="Homepage" >
 
 
 <!-- ROADMAP -->
