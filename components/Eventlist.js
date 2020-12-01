@@ -78,7 +78,9 @@ export default function Eventlist({navigation, route}) {
 
     return (
         <View style={styles.EventListContainer}>
+          <View style={{margin:10}}>
             <Search keepLista={listItemsKeep} parentCallback={callBackFunction}/>
+            </View>
             <FlatList
                 style={{marginLeft: 10}}
                 data={listItems}
