@@ -13,8 +13,9 @@ import {
     Alert,
     ActivityIndicator,
     Platform,
+    ScrollView
 } from "react-native";
-
+import { Icon } from 'react-native-elements';
 
 export default function Homepage({navigation}) {
     const [listItems, setListItems] = React.useState([]);
@@ -198,14 +199,19 @@ export default function Homepage({navigation}) {
         );
     }
 
-    
-
     return (
+        <ScrollView style={styles.scrollView}>
         <View style={styles.HomepageContainer}>
             <Text style={styles.TextContainer}> Löydä tapahtumat </Text>
-            <Search keepLista={listItemsKeep} 
+            <Search 
+                    keepLista={listItemsKeep} 
                     parentCallback={callBackFunction} />
-            <Button title = 'SEARCH' onPress={() => navigation.navigate('Eventlist', {data: listItems})}/>
+            <View style={styles.Icon}>
+            <Icon reverse 
+                    type= "material" 
+                    name= "search" 
+                    onPress={() => navigation.navigate('Eventlist', {data: listItems})} />
+                    </View>
             <Text style={{marginLeft: 10}}>Päivämäärä</Text>
             <View style={styles.Buttons}>
               <View style={{padding: 5}}>
@@ -261,7 +267,11 @@ export default function Homepage({navigation}) {
                 </View>
             </View>
             <HighlightEvent></HighlightEvent>
+            <HighlightEvent></HighlightEvent>
+            <HighlightEvent></HighlightEvent>
+            <HighlightEvent></HighlightEvent>
         </View>
+        </ScrollView>
     );
 }
 
@@ -278,9 +288,18 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 20,
         marginLeft: 10,
+        justifyContent: 'center', 
+                                alignItems: 'center'
     },
     Buttons: {
         flexDirection: "row",
         marginLeft: 10,
     },
+    scrollView: {
+        marginHorizontal: 10,
+      },
+    Icon: {
+        justifyContent: 'center', 
+        alignItems: 'center'
+    }
 });

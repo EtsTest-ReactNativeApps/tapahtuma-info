@@ -66,6 +66,8 @@ export default function Highlights() {
         }
       };
 
+     
+
     // useEffect(() => {
     //     console.log(randomEvent,"randomevent")
     

@@ -32,6 +32,11 @@ export default function Search(props) {
   return (
     <View>
       <SearchBar
+        inputStyle={{backgroundColor: 'white'}}
+        containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+        placeholderTextColor={"rgb(0,0,0)"}
+        inputContainerStyle={{backgroundColor: 'white'}}
+        style={{justifyContent: 'space-around'}}
         placeholder="Etsi tapahtumaa..."
         onClear={(text) => SearchFilterFunction("")}
         onChangeText={(text) => SearchFilterFunction(text)}
