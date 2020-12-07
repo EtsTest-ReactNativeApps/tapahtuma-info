@@ -31,8 +31,10 @@ export default function Homepage({navigation}) {
 
     // Datepickerin constit
     const onChange = (selectedDate) => {
+        console.log("Onchange")
+
         const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'ios');
+        setShow(false);
         setDate(currentDate);
 
         pickedDate = currentDate.nativeEvent.timestamp
@@ -46,6 +48,7 @@ export default function Homepage({navigation}) {
     };
 
     const showMode = (currentMode) => {
+        setDate(new Date())
         setShow(true);
         setMode(currentMode);
     };
