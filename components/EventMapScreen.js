@@ -4,20 +4,20 @@ import MapView, { Marker } from "react-native-maps";
 
 import { StyleSheet, Text, View } from "react-native";
 
-export default function EventMapScreen({ route }) {
+export default function EventMapScreen({ navigation, route }) {
   const { location } = route.params;
 
   const [region, setRegion] = useState({
     latitude: 60.169587,
     longitude: 24.938201,
-    latitudeDelta: 0.5,
-    longitudeDelta: 0.5,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
   });
 
   const fetchCoordinates = () => {
     fetch(
       "http://www.mapquestapi.com/geocoding/v1/address?key=8oxL5Ltp3U33rpNEe7Rqbc47hfQDafLT&location=" +
-      location
+        location
     )
       .then((res) => res.json())
       .then((data) =>
@@ -45,9 +45,7 @@ export default function EventMapScreen({ route }) {
           }}
         />
       </MapView>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-      </View>
+      <StatusBar style="auto" />
     </View>
   );
 }

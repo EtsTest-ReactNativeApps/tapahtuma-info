@@ -76,9 +76,7 @@ export default function EventMapScreen({ navigation, route }) {
             }}
           />
         </MapView>
-        <View style={styles.container}>
-          <StatusBar style="auto" />
-        </View>
+        <StatusBar style="auto" />
       </View>
     );
   }

@@ -4,10 +4,9 @@ import moment from "moment";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-
 export default function Event(props) {
   let propsItem = props;
-  let navigation = useNavigation()
+  let navigation = useNavigation();
 
   let image;
   if (props.item.description.images[0]) {

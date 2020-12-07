@@ -1,6 +1,5 @@
-
-import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, FlatList, Alert } from "react-native";
+import React from "react";
+import { Text, View, Button, FlatList, Alert } from "react-native";
 import RestaurantCard from "./RestaurantCard";
 
 export default function Restaurants({ navigation, route }) {
@@ -39,9 +38,7 @@ export default function Restaurants({ navigation, route }) {
 
   const EmptyListMessage = ({ item }) => {
     return (
-      <Text style={styles.emptyListStyle} onPress={() => getItem(item)}>
-        Ei ravintoloita lähettyvillä
-      </Text>
+      <Text onPress={() => getItem(item)}>Ei ravintoloita lähettyvillä</Text>
     );
   };
 
@@ -54,6 +51,7 @@ export default function Restaurants({ navigation, route }) {
   return (
     <View style={{ flex: 1 }}>
       <Button
+        color="black"
         title="Näytä kartalla"
         onPress={() =>
           navigation.navigate("RestaurantMap", { eventCoordsMap, listItems })
@@ -68,15 +66,3 @@ export default function Restaurants({ navigation, route }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  listItem: {
-    flex: 1,
-    marginHorizontal: 10,
-    marginVertical: 5,
-    flexDirection: "row",
-    borderWidth: 1,
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-  },
-});

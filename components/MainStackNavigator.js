@@ -6,7 +6,7 @@ import Homepage from "./Homepage";
 import Eventlist from "./Eventlist";
 import EventMapScreen from "./EventMapScreen";
 import Restaurants from "./Restaurants";
-import RestaurantMap from "./RestausrantMap";
+import RestaurantMap from "./RestaurantMap";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +18,11 @@ const MainStackNavigator = () => {
         options={{ headerShown: false }}
         component={Homepage}
       />
-      <Stack.Screen name="Eventlist" component={Eventlist} options={{ title: "Etusivu" }} />
+      <Stack.Screen
+        name="Eventlist"
+        component={Eventlist}
+        options={{ title: "Etusivu" }}
+      />
       <Stack.Screen
         name="EventScreen"
         options={{ title: "Etusivu" }}
