@@ -14,7 +14,6 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-//nämä täytyy exportata testausta varten, jos testaa yksittäistä komponenttia
 export let day = new Date().getDay();
 export let dayArr;
 export const weekdays = [
@@ -32,14 +31,7 @@ export default function RestaurantCard(props) {
   const [modalVisible, setModalVisible] = React.useState(false);
   let item = props.item;
   let eventCoords = props.eventCoords;
-  /*
-  const orderByDistance = () => {
-    orderByDistance(eventCoords, {
-      latitude: item.location.lat,
-      longitude: item.location.lon,
-    });
-  };
-*/
+
   let imageIcon;
   if (item.description.images.length > 0) {
     imageIcon = { uri: item.description.images[0].url };
@@ -79,9 +71,9 @@ export default function RestaurantCard(props) {
     } else {
       hourMsg.push(
         item.opening_hours.hours[i].opens.substring(0, 5) +
-        " - " +
-        item.opening_hours.hours[i].closes.substring(0, 5) +
-        "\n"
+          " - " +
+          item.opening_hours.hours[i].closes.substring(0, 5) +
+          "\n"
       );
     }
   }
@@ -100,19 +92,17 @@ export default function RestaurantCard(props) {
           Alert.alert("Ikkuna suljettu.");
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{hourMsg}</Text>
+        <View style={styles.modalView}>
+          <Text>{hourMsg}</Text>
 
-            <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <Text>Sulje</Text>
-            </TouchableHighlight>
-          </View>
+          <TouchableHighlight
+            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+            onPress={() => {
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <Text>Sulje</Text>
+          </TouchableHighlight>
         </View>
       </Modal>
 

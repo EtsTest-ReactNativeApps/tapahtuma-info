@@ -11,9 +11,7 @@ import {
 
 import Search from "./Search";
 
-
 export default function Eventlist({ navigation, route }) {
-
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(true);
@@ -21,14 +19,20 @@ export default function Eventlist({ navigation, route }) {
   let start = 100
   let end = 200
 
+<<<<<<< HEAD
 
   function fetchData(startIndex, endIndex) {
+=======
+  function fetchData() {
+    let startIndex = 0;
+    let endIndex = 100;
+>>>>>>> 94d960c780ed8a16f5eebde746904d5708a50768
 
     fetch(
       "https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=" +
-      startIndex +
-      "&endIndex=" +
-      endIndex,
+        startIndex +
+        "&endIndex=" +
+        endIndex,
       {
         method: "GET",
       }
@@ -66,8 +70,8 @@ export default function Eventlist({ navigation, route }) {
       fetchData(0, 100);
     } else {
       const { data } = route.params;
-      setListItems(data)
-      setListItemsKeep(data)
+      setListItems(data);
+      setListItemsKeep(data);
     }
   }, []);
 

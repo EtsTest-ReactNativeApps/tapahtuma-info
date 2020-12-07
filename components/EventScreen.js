@@ -14,8 +14,8 @@ import {
 } from "react-native";
 
 export default function EventScreen({ navigation, route }) {
-
   const { propsItem } = route.params;
+
   let location =
     propsItem.item.location.address.street_address +
     ", " +
@@ -49,8 +49,6 @@ export default function EventScreen({ navigation, route }) {
     title = propsItem.item.name.en;
   }
 
-  //CHECK MYÖHEMMIN OLIKO EXPOSSA VAAN VIKA,
-  //ei näytä alkaneesta tapahtumasta alku ja loppupvää
   let newDate;
   if (
     moment(propsItem.item.event_dates.starting_day).format("DD.MM.YYYY") ===
@@ -93,7 +91,7 @@ export default function EventScreen({ navigation, route }) {
           <Ionicons name="md-time" /> {newHours}
         </Text>
         <Text
-          onPress={() => navigation.navigate("EventMapScreen", { location,navigation })}
+          onPress={() => navigation.navigate("EventMapScreen", { location })}
         >
           <Ionicons name="md-pin" /> Näytä kartalta
         </Text>
@@ -126,9 +124,6 @@ const styles = StyleSheet.create({
   EventListContainer: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-  },
-  ActivityIndicator: {
-    flex: 1,
   },
   Image: {
     flex: 1,

@@ -1,18 +1,15 @@
 import { SearchBar } from "react-native-elements";
 import React from "react";
 import { useState } from "react";
-import {
-    View
-} from "react-native";
+import { View } from "react-native";
 
 export default function Search(props) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const SearchFilterFunction = (text) => {
     setSearchQuery(text);
-    //passing the inserted text in textinput
+
     const newData = props.keepLista.filter(function (item) {
-      //applying filter for the inserted text in search bar
       const itemData = item.name.fi
         ? item.name.fi.toUpperCase()
         : "".toUpperCase();
@@ -24,15 +21,18 @@ export default function Search(props) {
     props.parentCallback(newData);
   };
 
-
   return (
     <View>
       <SearchBar
-        inputStyle={{backgroundColor: 'white'}}
-        containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+        inputStyle={{ backgroundColor: "white" }}
+        containerStyle={{
+          backgroundColor: "white",
+          borderWidth: 1,
+          borderRadius: 5,
+        }}
         placeholderTextColor={"rgb(0,0,0)"}
-        inputContainerStyle={{backgroundColor: 'white'}}
-        style={{justifyContent: 'space-around'}}
+        inputContainerStyle={{ backgroundColor: "white" }}
+        style={{ justifyContent: "space-around" }}
         placeholder="Etsi tapahtumaa..."
         onClear={(text) => SearchFilterFunction("")}
         onChangeText={(text) => SearchFilterFunction(text)}
