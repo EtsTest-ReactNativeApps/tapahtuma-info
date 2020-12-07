@@ -21,12 +21,6 @@ export default function RestaurantCard(props) {
 
   React.useEffect(() => {}, []);
 
-  const orderByDistance = () => {
-    orderByDistance(eventCoords, {
-      latitude: item.location.lat,
-      longitude: item.location.lon,
-    });
-  };
 
   let imageIcon;
   if (item.description.images.length > 0) {
