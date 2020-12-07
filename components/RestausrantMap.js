@@ -8,14 +8,12 @@ export default function EventMapScreen({ navigation, route }) {
   const { listItems } = route.params;
 
   const [regions, setRegions] = useState([]);
-  const [region, setRegion] = useState(
-    {
-      latitude: 60.169587,
-      longitude: 24.938201,
-      latitudeDelta: 0.3,
-      longitudeDelta: 0.3,
-    }
-  );
+  const [region, setRegion] = useState({
+    latitude: 60.169587,
+    longitude: 24.938201,
+    latitudeDelta: 0.3,
+    longitudeDelta: 0.3,
+  });
 
   let fetchRestaurant = [];
   for (let i = 0; i < listItems.length; i++) {
@@ -23,20 +21,17 @@ export default function EventMapScreen({ navigation, route }) {
       "&location=" + listItems[i].location.lat + "," + listItems[i].location.lon
     );
   }
-  // console.log(fetchRestaurant);
-  //Ei toimi vielä oikein
 
   useEffect(() => {
     fetchCoordinates();
-  }, [])
-
+  }, []);
 
   const fetchCoordinates = () => {
     fetch(
       "https://www.mapquestapi.com/geocoding/v1/batch?&inFormat=kvp&outFormat=json&thumbMaps=false&maxResults=1&location=" +
-      eventCoordsMap +
-      fetchRestaurant +
-      "&key=8oxL5Ltp3U33rpNEe7Rqbc47hfQDafLT"
+        eventCoordsMap +
+        fetchRestaurant +
+        "&key=8oxL5Ltp3U33rpNEe7Rqbc47hfQDafLT"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -46,14 +41,11 @@ export default function EventMapScreen({ navigation, route }) {
           longitude: data.results[0].locations[0].latLng.lng,
           latitudeDelta: 0.05,
           longitudeDelta: 0.05,
-        })
-      })
+        });
+      });
   };
-  console.log(regions, "Regions");
-
-
   if (regions.length === 0) {
-    return <Text>Loading...</Text>
+    return <Text>Loading...</Text>;
   } else {
     return (
       <View style={styles.EventMapContainer}>

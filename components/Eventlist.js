@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
   EventListContainer: {
     flex: 1,
     marginTop: 30,
+    backgroundColor: "#FFFFFF",
   },
   ActivityIndicator: {
     flex: 1,
