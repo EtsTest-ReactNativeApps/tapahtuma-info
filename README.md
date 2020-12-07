@@ -135,9 +135,6 @@ With the application users can search events from Helsinki API by the name, by d
 
 <!-- ROADMAP -->
 
-## Roadmap
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
@@ -161,11 +158,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Project group
 
-Marko Maessen
-Linnea Myllynen
-Markku Myllärinen
-Iina Osmala
-Kaisa Ovaskainen
+Marko Maessen </br>
+Linnea Myllynen </br>
+Markku Myllärinen </br>
+Iina Osmala </br>
+Kaisa Ovaskainen </br>
 
 Project Link: [https://github.com/Team-RyTy/tapahtuma-info.git](https://github.com/Team-RyTy/tapahtuma-info.git)
 
