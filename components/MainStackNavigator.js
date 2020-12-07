@@ -18,7 +18,7 @@ const MainStackNavigator = () => {
         options={{ headerShown: false }}
         component={Homepage}
       />
-      <Stack.Screen name="Eventlist" component={Eventlist} />
+      <Stack.Screen name="Eventlist" component={Eventlist} options={{ title: "Etusivu" }} />
       <Stack.Screen
         name="EventScreen"
         options={{ title: "Etusivu" }}

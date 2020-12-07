@@ -21,6 +21,9 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 const EventlistStack = createStackNavigator();
 
 export default function Eventlist({navigation, route}) {
+
+  let propNavigation = navigation
+
     const [listItems, setListItems] = React.useState([]);
     const [listItemsKeep, setListItemsKeep] = React.useState([]);
     const [isReady, setReady] = React.useState(true);
@@ -64,7 +67,7 @@ export default function Eventlist({navigation, route}) {
     }, []);
 
     const renderItem = (item) => {
-        return <Event item={item}/>;
+        return <Event item={item} navigation={propNavigation}/>;
     };
 
     if (!isReady) {

@@ -15,8 +15,8 @@ import {
 } from "react-native";
 
 export default function EventScreen({ navigation, route }) {
-  const { propsItem } = route.params;
 
+  const { propsItem } = route.params;
   let location =
     propsItem.item.location.address.street_address +
     ", " +
@@ -94,7 +94,7 @@ export default function EventScreen({ navigation, route }) {
           <Ionicons name="md-time" /> {newHours}
         </Text>
         <Text
-          onPress={() => navigation.navigate("EventMapScreen", { location })}
+          onPress={() => navigation.navigate("EventMapScreen", { location,navigation })}
         >
           <Ionicons name="md-pin" /> Näytä kartalta
         </Text>

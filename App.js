@@ -7,14 +7,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import {
   StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  FlatList,
-  Alert,
-  ScrollView,
-  Linking,
 } from "react-native";
 
 import { MainStackNavigator } from "./components/MainStackNavigator";

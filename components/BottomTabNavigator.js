@@ -1,7 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
-import { MainStackNavigator, EventStackNavigator } from "./MainStackNavigator";
+import { MainStackNavigator } from "./MainStackNavigator";
+import { EventListStackNavigation } from "./EventListStackNavigation";
 import Eventlist from "./Eventlist";
 import Homepage from "./Homepage";
 import { Ionicons } from "@expo/vector-icons";
@@ -27,7 +28,7 @@ const BottomTabNavigator = () => {
       })}
     >
       <Tab.Screen name="Etusivu" component={MainStackNavigator} />
-      <Tab.Screen name="Tapahtumat" component={Eventlist} />
+      <Tab.Screen name="Tapahtumat" component={EventListStackNavigation} />
     </Tab.Navigator>
   );
 };
