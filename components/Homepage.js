@@ -4,7 +4,7 @@ import Search from "./Search";
 import HighlightEvent from "./Highlights"
 import moment from "moment";
 import 'moment-timezone';
-import {useEffect} from "react";
+import { useEffect } from "react";
 import {
     StyleSheet,
     Text,
@@ -17,7 +17,7 @@ import {
 } from "react-native";
 import { Icon } from 'react-native-elements';
 
-export default function Homepage({navigation}) {
+export default function Homepage({ navigation }) {
     const [listItems, setListItems] = React.useState([]);
     const [listItemsKeep, setListItemsKeep] = React.useState([]);
     const [isReady, setReady] = React.useState(false);
@@ -31,10 +31,8 @@ export default function Homepage({navigation}) {
 
     // Datepickerin constit
     const onChange = (selectedDate) => {
-        console.log("Onchange")
-
         const currentDate = selectedDate || date;
-        setShow(false);
+        setShow(Platform.OS === 'ios');
         setDate(currentDate);
 
         pickedDate = currentDate.nativeEvent.timestamp
@@ -44,7 +42,7 @@ export default function Homepage({navigation}) {
 
         let eventsSelectedDay = listItems.filter(event => event.event_dates.starting_day >= selectedMorning).filter(event =>
             event.event_dates.starting_day <= selectedNight)
-        navigation.navigate("Eventlist", {data: eventsSelectedDay})
+        navigation.navigate("Eventlist", { data: eventsSelectedDay })
     };
 
     const showMode = (currentMode) => {
@@ -59,25 +57,25 @@ export default function Homepage({navigation}) {
 
     function getEventsToday() {
 
-        let nextMidnight = moment( moment().format('YYYY-MM-DD') + ' 23:59:00' ).toISOString()
+        let nextMidnight = moment(moment().format('YYYY-MM-DD') + ' 23:59:00').toISOString()
 
         let momentTime = moment(moment().format()).toISOString()
 
         let eventsToday = listItems.filter(event => event.event_dates.starting_day >= momentTime).filter(event =>
             event.event_dates.starting_day <= nextMidnight)
-        
-        navigation.navigate("Eventlist", {data: eventsToday})
+
+        navigation.navigate("Eventlist", { data: eventsToday })
     }
 
     function getEventsTomorrow() {
-       
+
         let tomorrowMorning = moment().add(1, 'day').startOf('day').toISOString();
         let tomorrowNight = moment().add(1, 'day').endOf('day').toISOString()
 
-        let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event => 
+        let eventsTomorrow = listItems.filter(event => event.event_dates.starting_day >= tomorrowMorning).filter(event =>
             event.event_dates.starting_day <= tomorrowNight)
 
-        navigation.navigate("Eventlist", {data: eventsTomorrow})
+        navigation.navigate("Eventlist", { data: eventsTomorrow })
 
     }
 
@@ -100,8 +98,8 @@ export default function Homepage({navigation}) {
                 const events = musicEvents.filter(function (a) {
                     return a.event_dates.starting_day >= today;
                 });
-                navigation.navigate("Eventlist", {data: events})
-            })   
+                navigation.navigate("Eventlist", { data: events })
+            })
     }
 
     function getCultureEvents() {
@@ -123,8 +121,8 @@ export default function Homepage({navigation}) {
                 const events = cultureEvents.filter(function (a) {
                     return a.event_dates.starting_day >= today;
                 });
-                navigation.navigate("Eventlist", {data: events})
-            })   
+                navigation.navigate("Eventlist", { data: events })
+            })
     }
 
     function getFestivalEvents() {
@@ -146,8 +144,8 @@ export default function Homepage({navigation}) {
                 const events = festivalEvents.filter(function (a) {
                     return a.event_dates.starting_day >= today;
                 });
-                navigation.navigate("Eventlist", {data: events})
-            })   
+                navigation.navigate("Eventlist", { data: events })
+            })
     }
 
     function fetchData() {
@@ -191,83 +189,83 @@ export default function Homepage({navigation}) {
         return (
             <View style={styles.HomepageContainer}>
                 <Search keepLista={listItemsKeep} parentCallback={callBackFunction} />
-                <ActivityIndicator style={styles.ActivityIndicator} size="large"/>
+                <ActivityIndicator style={styles.ActivityIndicator} size="large" />
             </View>
         );
     }
 
     return (
         <ScrollView style={styles.scrollView}>
-        <View style={styles.HomepageContainer}>
-            <Text style={styles.TitleContainer}> Löydä tapahtumat </Text>
-            <Search 
-                    keepLista={listItemsKeep} 
+            <View style={styles.HomepageContainer}>
+                <Text style={styles.TitleContainer}> Löydä tapahtumat </Text>
+                <Search
+                    keepLista={listItemsKeep}
                     parentCallback={callBackFunction} />
-            <View style={styles.Icon}>
-            <Icon reverse 
-                    type= "material" 
-                    name= "search" 
-                    onPress={() => navigation.navigate('Eventlist', {data: listItems})} />
+                <View style={styles.Icon}>
+                    <Icon reverse
+                        type="material"
+                        name="search"
+                        onPress={() => navigation.navigate('Eventlist', { data: listItems })} />
+                </View>
+                <Text style={styles.TextContainer}>Päivämäärä</Text>
+                <View style={styles.Buttons}>
+                    <View style={{ padding: 5 }}>
+                        <Button
+                            title="Tänään"
+                            onPress={_ => getEventsToday()}
+                            color="black"
+                        />
                     </View>
-            <Text style={styles.TextContainer}>Päivämäärä</Text>
-            <View style={styles.Buttons}>
-              <View style={{padding: 5}}>
-                <Button
-                    title="Tänään"
-                    onPress={_ => getEventsToday()}
-                    color="black"
-                />
-              </View>
-              <View style={{padding: 5}}>
-                <Button
-                    title="Huomenna"
-                    onPress={_ => getEventsTomorrow()}
-                    color="black"
-                />
-              </View>
-              <View style={{padding: 5}}>
-                <Button onPress={showDatepicker} title="Valitse pvm" color="black"/>
+                    <View style={{ padding: 5 }}>
+                        <Button
+                            title="Huomenna"
+                            onPress={_ => getEventsTomorrow()}
+                            color="black"
+                        />
+                    </View>
+                    <View style={{ padding: 5 }}>
+                        <Button onPress={showDatepicker} title="Valitse pvm" color="black" />
+                    </View>
+                    {show && (
+                        <DateTimePicker
+                            testID="dateTimePicker"
+                            value={date}
+                            mode={mode}
+                            is24Hour={true}
+                            display="default"
+                            onChange={onChange}
+                        />
+                    )}
                 </View>
-                {show && (
-                    <DateTimePicker
-                        testID="dateTimePicker"
-                        value={date}
-                        mode={mode}
-                        is24Hour={true}
-                        display="default"
-                        onChange={onChange}
-                    />
-                )}
+                <Text style={styles.TextContainer}>Valitse luokan mukaan</Text>
+                <View style={styles.Buttons}>
+                    <View style={{ padding: 5 }}>
+                        <Button
+                            title="Musiikki"
+                            onPress={_ => getMusicEvents()}
+                            color="black"
+                        />
+                    </View>
+                    <View style={{ padding: 5 }}>
+                        <Button
+                            title="Kulttuuritapahtumat"
+                            onPress={_ => getCultureEvents()}
+                            color="black"
+                        />
+                    </View>
+                    <View style={{ padding: 5 }}>
+                        <Button
+                            title="Festivaalit"
+                            onPress={_ => getFestivalEvents()}
+                            color="black"
+                        />
+                    </View>
+                </View>
+                <HighlightEvent></HighlightEvent>
+                <HighlightEvent></HighlightEvent>
+                <HighlightEvent></HighlightEvent>
+                <HighlightEvent></HighlightEvent>
             </View>
-            <Text style={styles.TextContainer}>Valitse luokan mukaan</Text>
-            <View style={styles.Buttons}>
-                <View style={{padding: 5}}>
-                    <Button
-                        title="Musiikki"
-                        onPress={_ => getMusicEvents()}
-                        color="black"
-                    />
-                </View>
-                <View style={{padding: 5}}>
-                    <Button
-                        title="Kulttuuritapahtumat"
-                        onPress={_ => getCultureEvents()}
-                        color="black"
-                    />
-                </View>
-                <View style={{padding: 5}}>
-                    <Button
-                        title="Festivaalit"
-                        onPress={_ => getFestivalEvents()}
-                        color="black"
-                    />
-                </View>
-            </View>
-            <HighlightEvent></HighlightEvent>
-            <HighlightEvent></HighlightEvent>
-            <HighlightEvent></HighlightEvent>
-            <HighlightEvent></HighlightEvent>
-        </View>
         </ScrollView>
     );
 }
@@ -286,7 +284,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginLeft: 10,
     },
-    TextContainer:{
+    TextContainer: {
         fontWeight: "bold",
         marginLeft: 10
     },
@@ -296,9 +294,9 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         marginHorizontal: 10,
-      },
+    },
     Icon: {
-        justifyContent: 'center', 
+        justifyContent: 'center',
         alignItems: 'center'
     }
 });
