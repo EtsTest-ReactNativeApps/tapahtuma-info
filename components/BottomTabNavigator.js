@@ -3,8 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { MainStackNavigator } from "./MainStackNavigator";
 import { EventListStackNavigation } from "./EventListStackNavigation";
-import Eventlist from "./Eventlist";
-import Homepage from "./Homepage";
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();

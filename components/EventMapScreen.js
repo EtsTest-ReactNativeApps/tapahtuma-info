@@ -1,11 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { useNavigation } from "@react-navigation/native";
 
 import { StyleSheet, Text, View } from "react-native";
 
-export default function EventMapScreen({ navigation, route }) {
+export default function EventMapScreen({ route }) {
   const { location } = route.params;
 
   const [region, setRegion] = useState({
@@ -18,7 +17,7 @@ export default function EventMapScreen({ navigation, route }) {
   const fetchCoordinates = () => {
     fetch(
       "http://www.mapquestapi.com/geocoding/v1/address?key=8oxL5Ltp3U33rpNEe7Rqbc47hfQDafLT&location=" +
-        location
+      location
     )
       .then((res) => res.json())
       .then((data) =>

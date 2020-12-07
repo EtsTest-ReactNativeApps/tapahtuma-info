@@ -3,7 +3,6 @@ import React from "react";
 import moment from "moment";
 import { WebView } from "react-native-webview";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 
 import {
   StyleSheet,

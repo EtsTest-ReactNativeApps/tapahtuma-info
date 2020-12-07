@@ -7,8 +7,6 @@ import {
 
 export default function Search(props) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [arrayHolder, setArrayHolder] = useState([]);
-  const [dataSource, setdataSource] = useState([]);
 
   const SearchFilterFunction = (text) => {
     setSearchQuery(text);
@@ -27,7 +25,6 @@ export default function Search(props) {
     props.parentCallback(newData);
   };
 
-  const onChangeSearch = (query) => {};
 
   return (
     <View>

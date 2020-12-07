@@ -82,7 +82,6 @@ export default function RestaurantCard(props) {
   };
 
   return (
-    { orderByDistance },
     (
       <View style={styles.listItem}>
         <Modal

@@ -1,8 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { useNavigation } from "@react-navigation/native";
-import { Icon } from 'react-native-elements'
 import { StyleSheet, Text, View } from "react-native";
 
 export default function EventMapScreen({ navigation, route }) {
@@ -53,55 +51,37 @@ export default function EventMapScreen({ navigation, route }) {
   };
   console.log(regions, "Regions");
 
-  // let mapMarkers = Object.keys(regions).map((marker, index) => {
-  //   console.log(marker,index)
-  //   return <Marker key={index} coordinate={marker.results.locations.latlng} />
-  // });
-
-  /**
-  setRegion({
-          latitude: data.results[0].locations[0].latLng.lat,
-          longitude: data.results[0].locations[0].latLng.lng,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        })
-          {markers.map((marker, index) => (
-          <Marker key={index} coordinate={marker.latlng} title={marker.title} />
-        ))}
-        />
-        <Marker
-          coordinate={{
-            latitude: region.latitude,
-            longitude: region.longitude,
-          }}
-          {regions.map((marker, index) => (
-          <Marker key={index} coordinate={marker.latlng} />
-        ))}
-        />*/
 
   if (regions.length === 0) {
     return <Text>Loading...</Text>
   } else {
-
     return (
       <View style={styles.EventMapContainer}>
-        <MapView
-          style={{ flex: 6 }}
-          region={region}
-        >
+        <MapView style={{ flex: 6 }} region={region}>
           {regions.results.slice(1, regions.length).map((marker, index) => {
-            console.log(marker, index)
-            return <Marker
-              key={index}
-              image={require('../assets/baseline_restaurant_menu_black_48dp.png')}
-              coordinate={{ latitude: marker.locations[0].latLng.lat, longitude: marker.locations[0].latLng.lng }}
-              title={marker.locations[0].street}
-            />
+            console.log(marker, index);
+            return (
+              <Marker
+                key={index}
+                coordinate={{
+                  latitude: marker.locations[0].latLng.lat,
+                  longitude: marker.locations[0].latLng.lng,
+                }}
+                title={listItems[index].name.fi}
+              />
+            );
           })}
           <Marker
             key={230}
-            coordinate={{ latitude: regions.results[0].locations[0].latLng.lat, longitude: regions.results[0].locations[0].latLng.lng }}
+            coordinate={{
+              latitude: regions.results[0].locations[0].latLng.lat,
+              longitude: regions.results[0].locations[0].latLng.lng,
+            }}
             title="Tapahtuma"
+            icon={{
+              uri:
+                "https://assets.mapquestapi.com/icon/v2/circle-start-md@2x.png",
+            }}
           />
         </MapView>
         <View style={styles.container}>
