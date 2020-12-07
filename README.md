@@ -10,8 +10,6 @@
 *** github_username, repo_name, twitter_handle, email, project_title, project_description
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -21,13 +19,10 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/Team-RyTy/tapahtuma-info.git">
     <img src="https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4" alt="Logo" width="160" height="160">
   </a>
 
@@ -39,30 +34,26 @@
   </p>
 </p>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4)
+(https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4)
 
+Helsinki API Event mobile app is a team project which we did at Haaga-Helia's Software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API Event mobile app is modern fullstack application that has been made for the users to use it on their mobile phones.
 
-Helsinki API mobile app is a team project which we did at Haaga-Helia's Software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API mobile app is modern fullstack application that has been made for the users to use it on their mobile phones. 
+With the application users can search events from Helsinki API by the name, the date or by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where one can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where one can see the event and the restaurant on the map.
 
-With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where one can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where one can see the event and the restaurant on the map. 
-
-REST API provided by city of Helsinki is used in this project. http://open-api.myhelsinki.fi/ and we are also using mapquest API https://developer.mapquest.com/documentation/. 
+REST API provided by city of Helsinki is used in this project. http://open-api.myhelsinki.fi/ and we are also using mapquest API https://developer.mapquest.com/documentation/.
 
 ### Built With
 
-* [React Native](https://reactnative.dev/)
-* [Expo](https://expo.io/)
-* [AWS](https://aws.amazon.com/)
-
-
-
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io/)
+- [AWS](https://aws.amazon.com/)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 ### Prerequisites
@@ -70,13 +61,17 @@ REST API provided by city of Helsinki is used in this project. http://open-api.m
 To use the application you need to have installed the following:
 
 - yarn
-```bash 
+
+```bash
 npm install -g yarn
 ```
+
 - expo CLI
-```bash 
+
+```bash
 yarn global add expo-cli
 ```
+
 - expo mobile app in your mobile device OR emulator
   See detailed Expo documentation from [https://expo.io/](https://expo.io/)
 
@@ -105,8 +100,8 @@ expo start
 
 Open app with your mobile device by reading the QR-code from expo CLI console or use an emulator.
 
-
 ## Getting Started with the Backend
+
 Back-end was made with Amazon Web Servises.
 
 [Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/DataToS3.py) to pull data from Helsinki API to AWS S3 bucket
@@ -114,9 +109,11 @@ Back-end was made with Amazon Web Servises.
 [Python script](https://github.com/MarkkuMyllarinen/HelsinkiOpenAPI-AWS-Backend-Python-Scripts/blob/main/S3ToAPI.py) to pull data from S3 and give it as response
 
 ### AWS Diagram
+
 <img src="https://i.imgur.com/wxYOL6z.png" alt="Logo" width="500" height="500">
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -126,26 +123,29 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 With the application users can search events from Helsinki API by the name, by different tags. Users can also search event from eventlist page where is shown 100 events. User can navigate either to single events information page or to event's own webpage. At the single event's information page user can navigate to map to see where the event is located and user can also navigate to page where one can see list of restaurants near by the event. At that page user can also click to see the all the opening hours. From that page user can navigate to map where one can see the event and the restaurant on the map.
 
 ## Homepage
+
 <img src="https://i.imgur.com/EbfVNpr.png" alt="Homepage" width="344" height="712" >
 
 ## Eventlist
+
 <img src="https://i.imgur.com/dlAWbnr.png" alt="Eventlist" width="344" height="712" >
 
 ## Eventscreen
+
 <img src="https://i.imgur.com/7Q1FMQn.png" alt="Eventscreen" width="344" height="712" >
 
 ## Restaurantlist
+
 <img src="https://i.imgur.com/5WlBPsN.png" alt="Restaurantlist" width="344" height="712" >
 
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -156,37 +156,27 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
-## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+## Project group
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Marko Maessen
+Linnea Myllynen
+Markku Myllärinen
+Iina Osmala
+Kaisa Ovaskainen
 
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
-
+Project Link: [https://github.com/Team-RyTy/tapahtuma-info.git](https://github.com/Team-RyTy/tapahtuma-info.git)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
 [contributors-url]: https://github.com/github_username/repo/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
