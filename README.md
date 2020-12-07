@@ -38,7 +38,6 @@
 
 ## About The Project
 
-(https://avatars3.githubusercontent.com/u/70510330?s=400&u=5f6cccf9943103932d329d622eb355d76e5ba7be&v=4)
 
 Helsinki API Event mobile app is a team project which we did at Haaga-Helia's Software project II -course 2020. We wanted to create a mobile application for people to find Helsinki's events and restaurants near by the event. Helsinki API Event mobile app is modern fullstack application that has been made for the users to use it on their mobile phones.
 
