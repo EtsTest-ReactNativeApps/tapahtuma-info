@@ -6,6 +6,7 @@ import {
   FlatList,
   Alert,
   ActivityIndicator,
+  Button
 } from "react-native";
 
 import Search from "./Search";
@@ -16,10 +17,12 @@ export default function Eventlist({ navigation, route }) {
   const [listItems, setListItems] = React.useState([]);
   const [listItemsKeep, setListItemsKeep] = React.useState([]);
   const [isReady, setReady] = React.useState(true);
+  // const [kerran, setKerran] = React.useState(false);
+  let start = 100
+  let end = 200
 
-  function fetchData() {
-    let startIndex = 0; //fetcataan 100 eventtiä
-    let endIndex = 100;
+
+  function fetchData(startIndex, endIndex) {
 
     fetch(
       "https://l8seb8lrle.execute-api.eu-north-1.amazonaws.com/EventsData/events/?startIndex=" +
@@ -32,8 +35,21 @@ export default function Eventlist({ navigation, route }) {
     )
       .then((response) => response.json())
       .then((responseData) => {
-        setListItems(responseData);
-        setListItemsKeep(responseData);
+        if (listItems.length > 0) {
+          let temp = listItems
+          console.log(temp.length)
+          responseData.forEach(x => {
+            temp.push(x)
+          })
+          console.log(temp.length)
+          if (temp.length === 200) {
+            setListItems(temp);
+            setListItemsKeep(temp);
+          }
+        } else {
+          setListItems(responseData);
+          setListItemsKeep(responseData);
+        }
         setReady(true);
       })
       .catch((error) => {
@@ -47,7 +63,7 @@ export default function Eventlist({ navigation, route }) {
 
   React.useEffect(() => {
     if (route.params === undefined) {
-      fetchData();
+      fetchData(0, 100);
     } else {
       const { data } = route.params;
       setListItems(data)
@@ -58,6 +74,12 @@ export default function Eventlist({ navigation, route }) {
   const renderItem = (item) => {
     return <Event item={item} />;
   };
+
+  const onEndReached = () => {
+    fetchData(start, end)
+    start += 100
+    end += 100
+  }
 
   if (!isReady) {
     return (
@@ -78,6 +100,8 @@ export default function Eventlist({ navigation, route }) {
         data={listItems}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => renderItem(item)}
+        onEndReached={_ => onEndReached()}
+        onEndReachedThreshold={0.8}
       ></FlatList>
     </View>
   );
